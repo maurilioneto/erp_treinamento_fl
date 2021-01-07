@@ -1,0 +1,7 @@
+/build/
+/target/
+/.classpath
+/src/META-INF
+/.settings
+/WebContent/plugins
+/WebContent/lib

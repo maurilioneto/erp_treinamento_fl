@@ -1,0 +1,208 @@
+<!-- Comentário apenas para testar o commit -->
+
+<!-- Content Header (Page header) -->
+<div class="content-header">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-12">
+				<h1 class="m-0 text-dark">{{tela}}</h1>
+			</div>
+			<!-- /.col -->
+		</div>
+		<!-- /.row -->
+	</div>
+	<!-- /.container-fluid -->
+</div>
+<div class="row" ng-show="!visualizaCadastro && !mostrarAguarde">
+	<!-- /.content-header -->
+	<div class="col-md-12">
+
+		<div class="card">
+			<div class="card-header">
+				<h3 class="card-title">
+					<div class="d-flex flex-row">
+						<button type="button" ng-click="btnIncluir()" class="btn btn-outline-primary btn-lg d-inline-flex flex-row align-items-center sp-lt">
+							<i class="nav-icon fas fa-plus"></i>
+							<div class="button-text">Incluir</div>
+						</button>
+						<button type="button" ng-click="btnEditar()" class="btn btn-outline-primary btn-lg d-inline-flex flex-row align-items-center sp-lt">
+							<i class="nav-icon fas fa-pen"></i>
+							<div class="button-text">Editar</div>
+						</button>
+						<button type="button" ng-click="btnExcluir()" class="btn btn-outline-danger btn-lg d-inline-flex flex-row align-items-center sp-lt">
+							<i class="nav-icon fas fa-trash"></i>
+							<div class="button-text">Excluir</div>
+						</button>
+					</div>
+				</h3>
+			</div>
+			<!-- /.card-header -->
+			<div class="card-body">
+				<div class="table-responsive table-pesquisa-fixa">
+					<table class="table table-bordered table-condensed">
+						<thead>
+							<tr>
+								<th width="80px"><a href=""
+									ng-click="ordenacao('id')"
+									title="{{buscarDicionario('Ordenar')}}"> Cód. <span
+										ng-show="campoOrdenacao == '+id'"
+										class="glyphicon glyphicon-sort-by-attributes" /> <span
+										ng-show="campoOrdenacao == '-id'"
+										class="glyphicon glyphicon-sort-by-attributes-alt" />
+								</a> <input type="text" name="id" ng-model="idFilter"
+									class="form-control" placeholder="Pesquisar..."
+									ng-change="pesquisar()" mask-maiusculas></th>
+								<th><a href="" ng-click="ordenacao('descricao')"
+									title="Ordenar"> Descrição <span
+										ng-show="campoOrdenacao == '+descricao'"
+										class="glyphicon glyphicon-sort-by-attributes" /> <span
+										ng-show="campoOrdenacao == '-descricao'"
+										class="glyphicon glyphicon-sort-by-attributes-alt" />
+								</a> <input type="text" name="peso" ng-model="descricaoFilter"
+									class="form-control" placeholder="Pesquisar..."
+									ng-change="pesquisar()" mask-maiusculas></th>
+								<th width="100px"><a href=""
+									ng-click="ordenacao('descStatus')" title="Ordenar"> Status <span
+										ng-show="campoOrdenacao == '+descricao'"
+										class="glyphicon glyphicon-sort-by-attributes" /> <span
+										ng-show="campoOrdenacao == '-descricao'"
+										class="glyphicon glyphicon-sort-by-attributes-alt" />
+								</a> <input type="text" name="peso" ng-model="descricaoFilter"
+									class="form-control" placeholder="Pesquisar..."
+									ng-change="pesquisar()" mask-maiusculas></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="g in coresFiltradas" ng-click="selecionarLinha(g)"
+								ng-class="{linhaSelecionada : g == objetoSelecionado}">
+								<td>{{g.id}}</td>
+								<td>{{g.descricao}}</td>
+								<td>{{g.descStatus}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<!-- /.card-body -->
+		</div>
+	</div>
+
+	<div class="modal fade" id="modal-sm">
+		<div class="modal-dialog modal-sm">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">Small Modal</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<p>One fine body&hellip;</p>
+				</div>
+				<div class="modal-footer justify-content-between">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary">Save changes</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+</div>
+
+<div class="row" ng-show="visualizaCadastro && !mostrarAguarde">
+	<div class="col-md-12">
+		<div class="card">
+			<div class="card-header">
+				<h1 class="display-5">Cadastro</h1>
+			</div>
+			<!-- /.card-header -->
+			<div class="card-body">
+				<div class="row">
+					<div class="col-md-2">
+						<div class="form-group">
+							<label>C�digo</label> 
+							<input type="text" class="form-control" ng-model="cor.id" readonly>
+						</div>
+					</div>
+
+					<!-- CAMPO DESCRICAO -->
+					<div class="col-md-10">
+						<div class="form-group">
+							<label>* Descri��o</label>
+							<input id="cDescricao" type="text" class="form-control" ng-model="cor.descricao" maxlength="60" mask-maiusculas autofocus>
+						</div>
+					</div>
+
+					<!-- CAMPO STATUS -->
+					<div class="col-md-12">
+						<div class="form-group">
+							<div class="checkbox">
+								<label> 
+									<input type="checkbox" class="checkbox" ng-model="cor.status" ng-true-value="1" ng-false-value="0">
+									Ativo
+								</label>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div
+						class="alert alert-danger alert-dismissible col-md-12 text-center"
+						ng-show="mensagemRodape">{{mensagemRodape}}</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<button type="button" class="btn bg-primary btn-lg pull-right"
+							ng-click="btnSalvar(cor)">Salvar</button>
+					</div>
+				</div>
+			</div>
+			<!-- /.card-body -->
+		</div>
+	</div>
+</div>
+
+<div class="modal" id="modalAtencao">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">Atenção</h4>
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<p>{{mensagemModal}}</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default pull-right" data-dismiss="modal">OK</button>
+			</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<div class="modal" id="modalExcluir">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">Atenção</h4>
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<p>{{mensagemModal}}</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default pull-right" data-dismiss="modal">Cancelar</button>
+				<button type="button" class="btn btn-primary pull-right" ng-click="confirmaExcluir()">Confirmar</button>
+			</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>

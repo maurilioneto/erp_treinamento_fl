@@ -1,0 +1,145 @@
+<html ng-app="listaTelefonica">
+<head>
+<!-- DECLARAÇÃO jQuery 2.2.3 -->
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+	integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu"
+	crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css"
+	integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ"
+	crossorigin="anonymous">
+
+<!--PUXANDO CSS-->
+<!-- Font Awesome Icons -->
+<link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+<!-- overlayScrollbars -->
+<link rel="stylesheet"
+	href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+<!-- Theme style -->
+<link rel="stylesheet" href="dist/css/adminlte.min.css">
+<link rel="stylesheet" href="css/estilo.css">
+<!-- Google Font: Source Sans Pro -->
+<link
+	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700"
+	rel="stylesheet">
+<!--PUXANDO JS-->
+<link rel="stylesheet" href="css/app.css"/>
+
+<meta charset="utf-8">
+<title>ERP</title>
+</head>
+<body>
+	<!-- <div ng-include="'./main.html'"/> -->
+	<div class="wrapper">
+		<div class="main-header">
+			<nav class="navbar navbar-expand navbar-white navbar-light">
+				<!-- Left navbar links -->
+				<ul class="navbar-nav">
+					<li class="nav-item flex">
+						<a class="nav-link d-flex align-items-center justify-content-center" data-widget="pushmenu" href="#" role="button">
+							<i class="fas fa-bars fa-lg"></i>
+						</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+		<!-- /.navbar -->
+	
+		<!-- Main Sidebar Container -->
+		<aside class="main-sidebar sidebar-dark-primary elevation-4">
+			
+			<!-- Sidebar -->
+			<div class="sidebar">
+				<!-- Sidebar Menu -->
+				<nav class="mt-2">
+					<ul class="nav nav-pills nav-sidebar flex-column"
+						data-widget="treeview" role="menu" data-accordion="false">
+						<li class="nav-item has-treeview">
+							<a href="#" class="nav-link">
+								<i class="nav-icon fas fa-archive"></i>
+								<p>Produto</p>
+								<i class="fas fa-angle-left right"></i>
+							</a>
+							<ul class="nav nav-treeview">
+								<li class="nav-item">
+									<a href="#!/cor" class="nav-link"> 
+										<i class="far fa-circle nav-icon"></i>
+										<p>Cor</p>
+									</a>
+								</li>
+								<li class="nav-item">
+									<a href="#" class="nav-link">
+										<i class="far fa-circle nav-icon"></i>
+										<p>Categoria</p>
+									</a>
+								</li>
+							</ul></li>
+						<li class="nav-item has-treeview">
+							<a href="#" class="nav-link">
+								<i class="nav-icon fas fa-users"></i>
+								<p>Cliente</p>
+								<i class="fas fa-angle-left right"></i>
+							</a>
+							<ul class="nav nav-treeview">
+								<li class="nav-item">
+									<a href="pages/UI/general.html" class="nav-link">
+										<i class="far fa-circle nav-icon"></i>
+										<p>Tipo de contato</p>
+									</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</nav>
+			</div>
+		</aside>
+	
+		<!-- Content Wrapper. Contains page content -->
+		<div class="content-wrapper margin-back">
+			<div ng-view></div>
+		</div>
+		
+		
+	</div>
+
+
+	<!-- REQUIRED SCRIPTS -->
+	<!-- jQuery -->
+	<script src="plugins/jquery/jquery.min.js"></script>
+	<!-- Bootstrap -->
+	<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<!-- overlayScrollbars -->
+	<script
+		src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+	<!-- AdminLTE App -->
+	<script src="dist/js/adminlte.js"></script>
+	<!-- OPTIONAL SCRIPTS -->
+	<script src="dist/js/demo.js"></script>
+	<!-- PAGE PLUGINS -->
+	<!-- jQuery Mapael -->
+	<script src="plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
+	<script src="plugins/raphael/raphael.min.js"></script>
+	<script src="plugins/jquery-mapael/jquery.mapael.min.js"></script>
+	<script src="plugins/jquery-mapael/maps/usa_states.min.js"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
+		integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"
+		crossorigin="anonymous"></script>
+
+	<!-- DECLARACAO DO ANGULAR -->
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+	<script src="js/app.js"></script>
+	<script src="js/controllers/corController.js"></script>
+	<script src="js/services/requisicaoService.js"></script>
+	<script src="js/config/routeConfig.js"></script>
+	<script src="lib/angular-messages.js"></script>
+	<script src="lib/angular-route.js"></script>
+
+</body>
+</html>

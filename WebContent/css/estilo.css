@@ -1,0 +1,72 @@
+
+.coluna-padrao-5{
+	width: 40px;
+}
+
+.coluna-padrao-10{
+	width: 60px;
+}
+
+.coluna-padrao-20{
+	width: 70px;
+}
+
+.coluna-padrao-30{
+	width: 80px;
+}
+
+.coluna-padrao-40{
+	width: 90px;
+}
+
+.coluna-padrao-50{
+	width: 100px;
+}
+
+.coluna-padrao-60{
+	width: 120px;
+}
+
+.coluna-padrao-70{
+	width: 140px;
+}
+
+.coluna-padrao-80{
+	width: 160px;
+}
+
+.coluna-padrao-90{
+	width: 180px;
+}
+
+.coluna-padrao-95{
+    width: 210px;
+}
+
+.coluna-padrao-100{
+	width: 350px;
+}
+
+.coluna-padrao-120{
+    width: 450px;
+}
+
+.coluna-padrao-150{
+	width: 550px;
+}
+
+.coluna-padrao-200{
+	width: 700px;
+}
+
+.table-pesquisa-fixa{
+	height: 390px;
+}
+
+.linhaSelecionada {
+  background-color: #cde;
+}
+
+.text-center {
+	text-align: center;
+}
