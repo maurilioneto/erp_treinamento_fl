@@ -15,14 +15,6 @@ app.controller("marcaController", function ($scope, requisicaoService, filterFil
 		$scope.cadastro.id = null;
 	}
 
-	//ALTERAR
-	$scope.btnAlterar = function() {
-		$scope.tela = "Produto > Marca > Incluir";
-		$scope.cadastrando = true;
-		$scope.cadastro = {};
-		$scope.cadastro.status = true;
-	}
-
 	//VOLTAR
 	$scope.btnVoltar = function() {
 		$scope.tela = "Produto > Marca";
@@ -121,7 +113,6 @@ app.controller("marcaController", function ($scope, requisicaoService, filterFil
 		$scope.marcasFiltradas = orderByFilter(filterFilter($scope.marcas,{
 			id:$scope.idFilter,
 			descricao: $scope.descricaoFilter,
-			tipo: $scope.tipoFilter
 		}), $scope.campoOrdenacao);
 	}
 

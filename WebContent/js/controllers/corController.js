@@ -121,7 +121,6 @@ app.controller("corController", function ($scope, requisicaoService, filterFilte
 		$scope.coresFiltradas = orderByFilter(filterFilter($scope.cores,{
 			id:$scope.idFilter,
 			descricao: $scope.descricaoFilter,
-			tipo: $scope.tipoFilter
 		}), $scope.campoOrdenacao);
 	}
 

@@ -15,14 +15,6 @@ app.controller("unidadeDeMedidaController", function ($scope, requisicaoService,
 		$scope.cadastro.id = null;
 	}
 
-	//ALTERAR
-	$scope.btnAlterar = function() {
-		$scope.tela = "Produto > Unidade de Medida > Incluir";
-		$scope.cadastrando = true;
-		$scope.cadastro = {};
-		$scope.cadastro.status = true;
-	}
-
 	//VOLTAR
 	$scope.btnVoltar = function() {
 		$scope.tela = "Produto > Unidade de Medida";
@@ -125,8 +117,7 @@ app.controller("unidadeDeMedidaController", function ($scope, requisicaoService,
 		$scope.unidadeDeMedidasFiltradas = orderByFilter(filterFilter($scope.unidadeDeMedidas,{
 			id:$scope.idFilter,
 			descricao: $scope.descricaoFilter,
-			descricao: $scope.descricaoFilter,
-			tipo: $scope.tipoFilter
+			sigla: $scope.siglaFilter,
 		}), $scope.campoOrdenacao);
 	}
 

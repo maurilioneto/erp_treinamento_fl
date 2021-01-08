@@ -15,14 +15,6 @@ app.controller("tamanhoController", function ($scope, requisicaoService, filterF
 		$scope.cadastro.id = null;
 	}
 
-	//ALTERAR
-	$scope.btnAlterar = function() {
-		$scope.tela = "Produto > Tamanho > Incluir";
-		$scope.cadastrando = true;
-		$scope.cadastro = {};
-		$scope.cadastro.status = true;
-	}
-
 	//VOLTAR
 	$scope.btnVoltar = function() {
 		$scope.tela = "Produto > Tamanho";
@@ -121,7 +113,6 @@ app.controller("tamanhoController", function ($scope, requisicaoService, filterF
 		$scope.tamanhosFiltradas = orderByFilter(filterFilter($scope.tamanhos,{
 			id:$scope.idFilter,
 			descricao: $scope.descricaoFilter,
-			tipo: $scope.tipoFilter
 		}), $scope.campoOrdenacao);
 	}
 
