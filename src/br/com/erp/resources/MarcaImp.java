@@ -73,7 +73,7 @@ public class MarcaImp {
 		try {
 			marcas = em.createQuery("select a from Marca a").getResultList();
 		} catch (Exception e) {
-
+			System.err.println(e);
 		} finally {
 			em.close();
 		}
@@ -89,9 +89,9 @@ public class MarcaImp {
 		EntityManager em = UnidadePersistencia.createEntityManager();
 
 		try {
-			return em.createQuery("select a from Marca a where a.status = 1;").getResultList();
+			return em.createQuery("select a from Marca a where a.status = 1").getResultList();
 		} catch (Exception e) {
-			
+			System.err.println(e);
 		} finally {
 			em.close();
 		}

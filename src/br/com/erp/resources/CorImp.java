@@ -69,10 +69,9 @@ public class CorImp {
 		List<Cor> cores = null;
 
 		try {
-			cores = em.createQuery("select a " 
-							     + "  from Cor a").getResultList();
+			cores = em.createQuery("select a from Cor a").getResultList();
 		} catch (Exception e) {
-
+			System.err.println(e);
 		} finally {
 			em.close();
 		}
@@ -87,9 +86,9 @@ public class CorImp {
 		EntityManager em = UnidadePersistencia.createEntityManager();
 
 		try {
-			return em.createQuery("select a from Contato a where a.status = 1").getResultList();
+			return em.createQuery("select a from Cor a where a.status = 1").getResultList();
 		} catch (Exception e) {
-			
+			System.err.println(e);
 		} finally {
 			em.close();
 		}
