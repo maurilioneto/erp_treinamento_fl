@@ -11,26 +11,26 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import br.com.erp.json.ParamJson;
-import br.com.erp.model.Cor;
+import br.com.erp.model.Marca;
 import br.com.erp.util.UnidadePersistencia;
 
-@Path("cor")
-public class CorImp {
-
+@Path("marca")
+public class MarcaImp {
+	
 	@Path("salvar")
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON + ";charset=utf-8")
 	@Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
-	public Cor save(Cor cor) {
-
+	public Marca save(Marca marca) {
+		
 		EntityManager em = UnidadePersistencia.createEntityManager();
 
 		try {
 			em.getTransaction().begin();
-			if (cor.getId() == null) {
-				em.persist(cor);
+			if (marca.getId() == null) {
+				em.persist(marca);
 			} else {
-				em.merge(cor);
+				em.merge(marca);
 			}
 			em.getTransaction().commit();
 
@@ -40,54 +40,57 @@ public class CorImp {
 		} finally {
 			em.close();
 		}
-		return cor;
+		return marca;
 	}
-
+	
 	@Path("obterPorId")
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON + ";charset=utf-8")
 	@Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
-	public Cor findByID(ParamJson paramJson) {
+	public Marca findByID(ParamJson paramJson) {
 		EntityManager em = UnidadePersistencia.createEntityManager();
-		Cor cor = null;
+		Marca marca = null;
 		try {
-			cor = em.find(Cor.class, paramJson.getInt1());
+			marca = em.find(Marca.class, paramJson.getInt1());
 		} catch (Exception e) {
 			System.err.println(e);
 		} finally {
 			em.close();
 		}
-		return cor;
+		return marca;
 	}
-
+	
 	@Path("obterTodos")
 	@GET
 	@Consumes(MediaType.APPLICATION_JSON + ";charset=utf-8")
 	@Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
-	public List<Cor> obterTodos() {
+	public List<Marca> obterTodos() {
+		
 		EntityManager em = UnidadePersistencia.createEntityManager();
-		List<Cor> cores = null;
+		
+		List<Marca> marcas = null;
 
 		try {
-			cores = em.createQuery("select a " 
-							     + "  from Cor a").getResultList();
+			marcas = em.createQuery("SELECT a FROM MARCA a;").getResultList();
+			System.out.println(marcas);
 		} catch (Exception e) {
 
 		} finally {
 			em.close();
 		}
-		return cores;
+		return marcas;
 	}
-
+	
 	@Path("obterTodosAtivos")
 	@GET
 	@Consumes(MediaType.APPLICATION_JSON + ";charset=utf-8")
 	@Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
-	public List<Cor> obterTodosAtivos() {
+	public List<Marca> obterTodosAtivos() {
+		
 		EntityManager em = UnidadePersistencia.createEntityManager();
 
 		try {
-			return em.createQuery("select a from Contato a where a.status = 1").getResultList();
+			return em.createQuery("SELECT a FROM MARCA a WHERE a.status = 1;").getResultList();
 		} catch (Exception e) {
 			
 		} finally {
@@ -95,7 +98,7 @@ public class CorImp {
 		}
 		return null;
 	}
-
+	
 	@Path("removerPorId")
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON + ";charset=utf-8")
@@ -104,15 +107,13 @@ public class CorImp {
 		EntityManager em = UnidadePersistencia.createEntityManager();
 
 		try {
-			Cor cor = em.find(Cor.class, paramJson.getInt1());
+			Marca marca = em.find(Marca.class, paramJson.getInt1());
 			em.getTransaction().begin();
-			em.remove(cor);
+			em.remove(marca);
 			em.getTransaction().commit();
-
 		} catch (Exception e) {
 			e.printStackTrace();
 			em.getTransaction().rollback();
-
 		} finally {
 			em.close();
 		}

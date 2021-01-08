@@ -11,26 +11,26 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import br.com.erp.json.ParamJson;
-import br.com.erp.model.Cor;
+import br.com.erp.model.Tamanho;
 import br.com.erp.util.UnidadePersistencia;
 
-@Path("cor")
-public class CorImp {
-
+@Path("tamanho")
+public class TamanhoImp {
+	
 	@Path("salvar")
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON + ";charset=utf-8")
 	@Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
-	public Cor save(Cor cor) {
-
+	public Tamanho save(Tamanho tamanho) {
+		
 		EntityManager em = UnidadePersistencia.createEntityManager();
 
 		try {
 			em.getTransaction().begin();
-			if (cor.getId() == null) {
-				em.persist(cor);
+			if (tamanho.getId() == null) {
+				em.persist(tamanho);
 			} else {
-				em.merge(cor);
+				em.merge(tamanho);
 			}
 			em.getTransaction().commit();
 
@@ -40,54 +40,57 @@ public class CorImp {
 		} finally {
 			em.close();
 		}
-		return cor;
+		return tamanho;
 	}
-
+	
 	@Path("obterPorId")
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON + ";charset=utf-8")
 	@Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
-	public Cor findByID(ParamJson paramJson) {
+	public Tamanho findByID(ParamJson paramJson) {
 		EntityManager em = UnidadePersistencia.createEntityManager();
-		Cor cor = null;
+		Tamanho tamanho = null;
 		try {
-			cor = em.find(Cor.class, paramJson.getInt1());
+			tamanho = em.find(Tamanho.class, paramJson.getInt1());
 		} catch (Exception e) {
 			System.err.println(e);
 		} finally {
 			em.close();
 		}
-		return cor;
+		return tamanho;
 	}
-
+	
 	@Path("obterTodos")
 	@GET
 	@Consumes(MediaType.APPLICATION_JSON + ";charset=utf-8")
 	@Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
-	public List<Cor> obterTodos() {
+	public List<Tamanho> obterTodos() {
+		
 		EntityManager em = UnidadePersistencia.createEntityManager();
-		List<Cor> cores = null;
+		
+		List<Tamanho> tamanhos = null;
 
 		try {
-			cores = em.createQuery("select a " 
-							     + "  from Cor a").getResultList();
+			tamanhos = em.createQuery("SELECT a FROM TAMANHO a;").getResultList();
+			System.out.println(tamanhos);
 		} catch (Exception e) {
 
 		} finally {
 			em.close();
 		}
-		return cores;
+		return tamanhos;
 	}
-
+	
 	@Path("obterTodosAtivos")
 	@GET
 	@Consumes(MediaType.APPLICATION_JSON + ";charset=utf-8")
 	@Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
-	public List<Cor> obterTodosAtivos() {
+	public List<Tamanho> obterTodosAtivos() {
+		
 		EntityManager em = UnidadePersistencia.createEntityManager();
 
 		try {
-			return em.createQuery("select a from Contato a where a.status = 1").getResultList();
+			return em.createQuery("SELECT a FROM TAMANHO a WHERE a.status = 1;").getResultList();
 		} catch (Exception e) {
 			
 		} finally {
@@ -95,7 +98,7 @@ public class CorImp {
 		}
 		return null;
 	}
-
+	
 	@Path("removerPorId")
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON + ";charset=utf-8")
@@ -104,15 +107,13 @@ public class CorImp {
 		EntityManager em = UnidadePersistencia.createEntityManager();
 
 		try {
-			Cor cor = em.find(Cor.class, paramJson.getInt1());
+			Tamanho tamanho = em.find(Tamanho.class, paramJson.getInt1());
 			em.getTransaction().begin();
-			em.remove(cor);
+			em.remove(tamanho);
 			em.getTransaction().commit();
-
 		} catch (Exception e) {
 			e.printStackTrace();
 			em.getTransaction().rollback();
-
 		} finally {
 			em.close();
 		}
