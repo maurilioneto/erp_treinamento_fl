@@ -71,8 +71,7 @@ public class MarcaImp {
 		List<Marca> marcas = null;
 
 		try {
-			marcas = em.createQuery("SELECT a FROM MARCA a;").getResultList();
-			System.out.println(marcas);
+			marcas = em.createQuery("select a from Marca a").getResultList();
 		} catch (Exception e) {
 
 		} finally {
@@ -90,7 +89,7 @@ public class MarcaImp {
 		EntityManager em = UnidadePersistencia.createEntityManager();
 
 		try {
-			return em.createQuery("SELECT a FROM MARCA a WHERE a.status = 1;").getResultList();
+			return em.createQuery("select a from Marca a where a.status = 1;").getResultList();
 		} catch (Exception e) {
 			
 		} finally {

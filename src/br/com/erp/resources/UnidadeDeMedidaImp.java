@@ -71,7 +71,7 @@ public class UnidadeDeMedidaImp {
 		List<UnidadeDeMedida> unidades = null;
 
 		try {
-			unidades = em.createQuery("SELECT a FROM UNIDADE_DE_MEDIDA a;").getResultList();
+			unidades = em.createQuery("select a from UnidadeDeMedida a").getResultList();
 			System.out.println(unidades);
 		} catch (Exception e) {
 
@@ -90,7 +90,7 @@ public class UnidadeDeMedidaImp {
 		EntityManager em = UnidadePersistencia.createEntityManager();
 
 		try {
-			return em.createQuery("SELECT a FROM UNIDADE_DE_MEDIDA a WHERE a.status = 1;").getResultList();
+			return em.createQuery("select a from UnidadeDeMedida a where a.status = 1").getResultList();
 		} catch (Exception e) {
 			
 		} finally {

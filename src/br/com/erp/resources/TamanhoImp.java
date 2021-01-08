@@ -66,15 +66,15 @@ public class TamanhoImp {
 	@Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
 	public List<Tamanho> obterTodos() {
 		
+		
 		EntityManager em = UnidadePersistencia.createEntityManager();
 		
 		List<Tamanho> tamanhos = null;
 
 		try {
-			tamanhos = em.createQuery("SELECT a FROM TAMANHO a;").getResultList();
-			System.out.println(tamanhos);
+			tamanhos = em.createQuery("select a from Tamanho a").getResultList();
 		} catch (Exception e) {
-
+			e.printStackTrace();
 		} finally {
 			em.close();
 		}
@@ -90,9 +90,9 @@ public class TamanhoImp {
 		EntityManager em = UnidadePersistencia.createEntityManager();
 
 		try {
-			return em.createQuery("SELECT a FROM TAMANHO a WHERE a.status = 1;").getResultList();
+			return em.createQuery("select a from Tamanho a where a.status = 1").getResultList();
 		} catch (Exception e) {
-			
+			e.printStackTrace();
 		} finally {
 			em.close();
 		}
