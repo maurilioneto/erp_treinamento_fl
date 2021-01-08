@@ -1,5 +1,5 @@
-app.controller("corController", function ($scope, requisicaoService, filterFilter, orderByFilter) {
-	$scope.tela = "Produto > Cor";
+app.controller("tamanhoController", function ($scope, requisicaoService, filterFilter, orderByFilter) {
+	$scope.tela = "Produto > Tamanho";
 	$scope.cadastrando = false;
 	$scope.editando = false;
 	$scope.marcas = [];
@@ -8,7 +8,7 @@ app.controller("corController", function ($scope, requisicaoService, filterFilte
 	
 	//INCLUIR
 	$scope.btnIncluir = function() {
-		$scope.tela = "Produto > Cor > Incluir";
+		$scope.tela = "Produto > Tamanho > Incluir";
 		$scope.cadastrando = true;
 		$scope.cadastro = {};
 		$scope.cadastro.status = 1;
@@ -17,7 +17,7 @@ app.controller("corController", function ($scope, requisicaoService, filterFilte
 
 	//ALTERAR
 	$scope.btnAlterar = function() {
-		$scope.tela = "Produto > Cor > Incluir";
+		$scope.tela = "Produto > Tamanho > Incluir";
 		$scope.cadastrando = true;
 		$scope.cadastro = {};
 		$scope.cadastro.status = true;
@@ -25,28 +25,28 @@ app.controller("corController", function ($scope, requisicaoService, filterFilte
 
 	//VOLTAR
 	$scope.btnVoltar = function() {
-		$scope.tela = "Produto > Cor";
+		$scope.tela = "Produto > Tamanho";
 		$scope.cadastrando = false;
 		carregarConteudo();
 	}
 
 	//SALVAR
-	$scope.btnSalvar = function(cor) {
+	$scope.btnSalvar = function(tamanho) {
 				
 		$scope.mensagemRodape = "";
 
 		//VALIDAÇÕES 
-		if (!cor) {
+		if (!tamanho) {
 			$scope.mensagemRodape = "Por favor preencha os campos!";
 			document.getElementById("cDescricao").focus();
 		}
-		if (!cor.descricao) {
+		if (!tamanho.descricao) {
 			$scope.mensagemRodape = "Por favor preencha o campo Descrição!";
 			document.getElementById("cDescricao").focus();
 		}
 
 		//SALVA O ITEM NA API
-		requisicaoService.requisitarPOST("cor/salvar", cor, function(retorno){
+		requisicaoService.requisitarPOST("tamanho/salvar", tamanho, function(retorno){
     		if (!retorno.isValid) {
     			alert(retorno.msg);
 				return;
@@ -59,7 +59,7 @@ app.controller("corController", function ($scope, requisicaoService, filterFilte
 			carregarConteudo()
     	});
 
-		$scope.tela = "Produto > Cor";
+		$scope.tela = "Produto > Tamanho";
 		$scope.cadastrando = false;
 		$scope.editando = false;
 		
@@ -77,13 +77,13 @@ app.controller("corController", function ($scope, requisicaoService, filterFilte
 			int1: $scope.objetoSelecionado.id
 		}
     	//OBTER O TAMANHO DA API
-    	requisicaoService.requisitarPOST("cor/obterPorId", param , function(retorno) {
+    	requisicaoService.requisitarPOST("tamanho/obterPorId", param , function(retorno) {
 			if (!retorno.isValid) {
     			alert(retorno.msg);
         		return;
     		}
 			$scope.cadastro = retorno.data;
-	    	$scope.tela = "Produto > Cor > Editar";
+	    	$scope.tela = "Produto > Tamanho > Editar";
 			$scope.cadastrando = true;
 			$scope.editando = true;
 		});
@@ -105,7 +105,7 @@ app.controller("corController", function ($scope, requisicaoService, filterFilte
 		}
 
     	//DELETAR
-    	requisicaoService.requisitarPOST("cor/removerPorId", param, function(retorno){
+    	requisicaoService.requisitarPOST("tamanho/removerPorId", param, function(retorno){
 	    		if (!retorno.isValid) {
 	    			alert(retorno.msg)
 	        		return;
@@ -118,7 +118,7 @@ app.controller("corController", function ($scope, requisicaoService, filterFilte
 
 	//FILTRAR
 	$scope.pesquisar = function(){
-		$scope.coresFiltradas = orderByFilter(filterFilter($scope.cores,{
+		$scope.tamanhosFiltradas = orderByFilter(filterFilter($scope.tamanhos,{
 			id:$scope.idFilter,
 			descricao: $scope.descricaoFilter,
 			tipo: $scope.tipoFilter
@@ -141,15 +141,15 @@ app.controller("corController", function ($scope, requisicaoService, filterFilte
 	function carregarConteudo() {
     	
 		//OBTER REGISTROS DA API
-    	requisicaoService.requisitarGET("cor/obterTodos", function(retorno) {
+    	requisicaoService.requisitarGET("tamanho/obterTodos", function(retorno) {
 			console.log(retorno);
     		if (!retorno.isValid) {
 				alert("Houve um problema!", retorno.msg);
         		return;
     		}
-			$scope.cores = retorno.data;
+			$scope.tamanhos = retorno.data;
 			$scope.pesquisar();
 		});
     
 	}
-});
+})

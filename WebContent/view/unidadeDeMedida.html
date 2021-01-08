@@ -1,18 +1,16 @@
 <div>
-	<div>
-		<!-- CAMINHO DA TELA -->
-		<div class="content-header" ng-con>
-			<div class="container-fluid">
-				<div class="row">
-					<div class="col-sm-12">
-						<h1 class="m-0 text-dark" ng-bind="tela"></h1>
-					</div>
+	<!-- CAMINHO DA TELA -->
+	<div class="content-header" ng-con>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-12">
+					<h1 class="m-0 text-dark" ng-bind="tela"></h1>
 				</div>
 			</div>
 		</div>
-	</div>
-	
-	<!-- TELA DE CONSULTA -->
+    </div>
+    
+    <!-- TELA DE CONSULTA -->
 	<div class="wrapper" ng-show="!cadastrando">
 		<div class="card">
 			<div class="card-header">
@@ -21,7 +19,7 @@
 						<i class="nav-icon fas fa-plus"></i>
 						<div class="button-text">Incluir</div>
 					</button>
-					<button type="button" ng-click="btnEditar(objetoSelecionado)" class="btn btn-outline-primary btn-lg d-inline-flex flex-row align-items-center sp-lt">
+					<button type="button" ng-click="btnEditar()" class="btn btn-outline-primary btn-lg d-inline-flex flex-row align-items-center sp-lt">
 						<i class="nav-icon fas fa-pen"></i>
 						<div class="button-text">Editar</div>
 					</button>
@@ -50,7 +48,15 @@
 										<span ng-show="campoOrdenacao == '+descricao'" class="glyphicon glyphicon-sort-by-attributes" />
 										<span ng-show="campoOrdenacao == '-descricao'" class="glyphicon glyphicon-sort-by-attributes-alt" />
 									</a>
-									<input type="text" name="id" ng-model="descricaoFilter" class="form-control" placeholder="Pesquisar..." ng-change="pesquisar()" mask-maiusculas>
+									<input type="text" name="descricao" ng-model="descricaoFilter" class="form-control" placeholder="Pesquisar..." ng-change="pesquisar()" mask-maiusculas>
+								</th>
+								<th>
+									<a href="" ng-click="ordenacao('sigla')" title="Ordenar">
+										Sigla 
+										<span ng-show="campoOrdenacao == '+sigla'" class="glyphicon glyphicon-sort-by-attributes" />
+										<span ng-show="campoOrdenacao == '-sigla'" class="glyphicon glyphicon-sort-by-attributes-alt" />
+									</a>
+									<input type="text" name="sigla" ng-model="siglaFilter" class="form-control" placeholder="Pesquisar..." ng-change="pesquisar()" mask-maiusculas>
 								</th>
 								<th width="100px">
 									<a href="" ng-click="ordenacao('descStatus')" title="Ordenar">
@@ -58,14 +64,15 @@
 										<span ng-show="campoOrdenacao == '+status'" class="glyphicon glyphicon-sort-by-attributes" />
 										<span ng-show="campoOrdenacao == '-status'" class="glyphicon glyphicon-sort-by-attributes-alt" />
 									</a>
-									<input type="text" name="id" ng-model="statusFilter" class="form-control" placeholder="Pesquisar..." ng-change="pesquisar()" mask-maiusculas>
+									<input type="text" name="status" ng-model="statusFilter" class="form-control" placeholder="Pesquisar..." ng-change="pesquisar()" mask-maiusculas>
 								</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr ng-repeat="g in coresFiltradas" ng-click="selecionarLinha(g)" ng-class="{linhaSelecionada : g == objetoSelecionado}">
+							<tr ng-repeat="g in unidadeDeMedidasFiltradas" ng-click="selecionarLinha(g)" ng-class="{linhaSelecionada : g == objetoSelecionado}">
 								<td>{{g.id}}</td>
 								<td>{{g.descricao}}</td>
+								<td>{{g.sigla}}</td>
 								<td>{{g.descStatus}}</td>
 							</tr>
 						</tbody>
@@ -87,9 +94,13 @@
 						<label for="name">Código</label>
 						<input type="text" name="cCodigo" ng-model="cadastro.codigo" class="form-control" disabled/>
 					</div>
-					<div class="col-md-10">
+					<div class="col-md-8">
 						<label for="name">Descrição</label>
-						<input type="text" id="cDescricao" ng-model="cadastro.descricao" class="form-control"  maxlength="100"/>
+						<input type="text" id="cDescricao" ng-model="cadastro.descricao" class="form-control" maxlength="100"/>
+					</div>
+					<div class="col-md-2">
+						<label for="name">Sigla</label>
+						<input type="text" id="cSigla" ng-model="cadastro.sigla" class="form-control" maxlength="2"/>
 					</div>
 					<div class="col-md-2">
 						<div class="checkbox">

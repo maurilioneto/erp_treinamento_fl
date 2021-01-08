@@ -42,10 +42,20 @@ hr {
 	margin-right: 4px;
 }
 
-.sp-lg {
+.btn-space {
+	margin: 12px;
+	margin-left: 6px;
 	margin-right: 6px;
 }
 
 .button-text {
 	padding: 4px !important;
+}
+
+.separator-grow {
+	width: 100%;
+}
+
+.separator {
+	width: 4px;
 }

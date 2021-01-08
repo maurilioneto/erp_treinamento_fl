@@ -1,18 +1,16 @@
 <div>
-	<div>
-		<!-- CAMINHO DA TELA -->
-		<div class="content-header" ng-con>
-			<div class="container-fluid">
-				<div class="row">
-					<div class="col-sm-12">
-						<h1 class="m-0 text-dark" ng-bind="tela"></h1>
-					</div>
+	<!-- CAMINHO DA TELA -->
+	<div class="content-header" ng-con>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-12">
+					<h1 class="m-0 text-dark" ng-bind="tela"></h1>
 				</div>
 			</div>
 		</div>
-	</div>
-	
-	<!-- TELA DE CONSULTA -->
+    </div>
+    
+    <!-- TELA DE CONSULTA -->
 	<div class="wrapper" ng-show="!cadastrando">
 		<div class="card">
 			<div class="card-header">
@@ -21,7 +19,7 @@
 						<i class="nav-icon fas fa-plus"></i>
 						<div class="button-text">Incluir</div>
 					</button>
-					<button type="button" ng-click="btnEditar(objetoSelecionado)" class="btn btn-outline-primary btn-lg d-inline-flex flex-row align-items-center sp-lt">
+					<button type="button" ng-click="btnEditar()" class="btn btn-outline-primary btn-lg d-inline-flex flex-row align-items-center sp-lt">
 						<i class="nav-icon fas fa-pen"></i>
 						<div class="button-text">Editar</div>
 					</button>
@@ -63,7 +61,7 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr ng-repeat="g in coresFiltradas" ng-click="selecionarLinha(g)" ng-class="{linhaSelecionada : g == objetoSelecionado}">
+							<tr ng-repeat="g in tamanhosFiltradas" ng-click="selecionarLinha(g)" ng-class="{linhaSelecionada : g == objetoSelecionado}">
 								<td>{{g.id}}</td>
 								<td>{{g.descricao}}</td>
 								<td>{{g.descStatus}}</td>

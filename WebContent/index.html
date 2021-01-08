@@ -33,7 +33,6 @@
 <title>ERP</title>
 </head>
 <body>
-	<!-- <div ng-include="'./main.html'"/> -->
 	<div class="wrapper">
 		<div class="main-header">
 			<nav class="navbar navbar-expand navbar-white navbar-light">
@@ -72,9 +71,21 @@
 									</a>
 								</li>
 								<li class="nav-item">
-									<a href="#" class="nav-link">
+									<a href="#!/tamanho" class="nav-link"> 
 										<i class="far fa-circle nav-icon"></i>
-										<p>Categoria</p>
+										<p>Tamanho</p>
+									</a>
+								</li>
+								<li class="nav-item">
+									<a href="#!/marca" class="nav-link"> 
+										<i class="far fa-circle nav-icon"></i>
+										<p>Marca</p>
+									</a>
+								</li>
+								<li class="nav-item">
+									<a href="#!/unidadeDeMedida" class="nav-link"> 
+										<i class="far fa-circle nav-icon"></i>
+										<p>Unidade de Medida</p>
 									</a>
 								</li>
 							</ul></li>
@@ -89,6 +100,21 @@
 									<a href="pages/UI/general.html" class="nav-link">
 										<i class="far fa-circle nav-icon"></i>
 										<p>Tipo de contato</p>
+									</a>
+								</li>
+							</ul>
+						</li>
+						<li class="nav-item has-treeview">
+							<a href="#" class="nav-link">
+								<i class="nav-icon fas fa-dollar-sign"></i>
+								<p>Pagamento</p>
+								<i class="fas fa-angle-left right"></i>
+							</a>
+							<ul class="nav nav-treeview">
+								<li class="nav-item">
+									<a href="#!/categoria" class="nav-link">
+										<i class="far fa-circle nav-icon"></i>
+										<p>Categoria</p>
 									</a>
 								</li>
 							</ul>
@@ -136,6 +162,10 @@
 
 	<script src="js/app.js"></script>
 	<script src="js/controllers/corController.js"></script>
+	<script src="js/controllers/categoriaController.js"></script>
+	<script src="js/controllers/marcaController.js"></script>
+	<script src="js/controllers/tamanhoController.js"></script>
+	<script src="js/controllers/unidadeDeMedidaController.js"></script>
 	<script src="js/services/requisicaoService.js"></script>
 	<script src="js/config/routeConfig.js"></script>
 	<script src="lib/angular-messages.js"></script>

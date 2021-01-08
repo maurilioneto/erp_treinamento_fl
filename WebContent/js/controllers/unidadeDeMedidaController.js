@@ -1,14 +1,14 @@
-app.controller("corController", function ($scope, requisicaoService, filterFilter, orderByFilter) {
-	$scope.tela = "Produto > Cor";
+app.controller("unidadeDeMedidaController", function ($scope, requisicaoService, filterFilter, orderByFilter) {
+	$scope.tela = "Produto > Unidade de Medida";
 	$scope.cadastrando = false;
 	$scope.editando = false;
-	$scope.marcas = [];
+	$scope.unidadeDeMedidas = [];
 
 	carregarConteudo();
 	
 	//INCLUIR
 	$scope.btnIncluir = function() {
-		$scope.tela = "Produto > Cor > Incluir";
+		$scope.tela = "Produto > Unidade de Medida > Incluir";
 		$scope.cadastrando = true;
 		$scope.cadastro = {};
 		$scope.cadastro.status = 1;
@@ -17,7 +17,7 @@ app.controller("corController", function ($scope, requisicaoService, filterFilte
 
 	//ALTERAR
 	$scope.btnAlterar = function() {
-		$scope.tela = "Produto > Cor > Incluir";
+		$scope.tela = "Produto > Unidade de Medida > Incluir";
 		$scope.cadastrando = true;
 		$scope.cadastro = {};
 		$scope.cadastro.status = true;
@@ -25,33 +25,37 @@ app.controller("corController", function ($scope, requisicaoService, filterFilte
 
 	//VOLTAR
 	$scope.btnVoltar = function() {
-		$scope.tela = "Produto > Cor";
+		$scope.tela = "Produto > Unidade de Medida";
 		$scope.cadastrando = false;
 		carregarConteudo();
 	}
 
 	//SALVAR
-	$scope.btnSalvar = function(cor) {
+	$scope.btnSalvar = function(unidadeDeMedida) {
 				
 		$scope.mensagemRodape = "";
 
 		//VALIDAÇÕES 
-		if (!cor) {
+		if (!unidadeDeMedida) {
 			$scope.mensagemRodape = "Por favor preencha os campos!";
 			document.getElementById("cDescricao").focus();
 		}
-		if (!cor.descricao) {
+		if (!unidadeDeMedida.descricao) {
 			$scope.mensagemRodape = "Por favor preencha o campo Descrição!";
+			document.getElementById("cDescricao").focus();
+		}
+		if (!unidadeDeMedida.sigla) {
+			$scope.mensagemRodape = "Por favor preencha o campo Sigla!";
 			document.getElementById("cDescricao").focus();
 		}
 
 		//SALVA O ITEM NA API
-		requisicaoService.requisitarPOST("cor/salvar", cor, function(retorno){
+		requisicaoService.requisitarPOST("unidadeDeMedida/salvar", unidadeDeMedida, function(retorno){
     		if (!retorno.isValid) {
     			alert(retorno.msg);
 				return;
     		} else {
-				$scope.tela = "Produto > Marca";
+				$scope.tela = "Produto > Unidade de Medida";
 				$scope.cadastrando = false;
 				$scope.editando = false;
 				delete $scope.cadastro;
@@ -59,7 +63,7 @@ app.controller("corController", function ($scope, requisicaoService, filterFilte
 			carregarConteudo()
     	});
 
-		$scope.tela = "Produto > Cor";
+		$scope.tela = "Produto > Unidade de Medida";
 		$scope.cadastrando = false;
 		$scope.editando = false;
 		
@@ -77,13 +81,13 @@ app.controller("corController", function ($scope, requisicaoService, filterFilte
 			int1: $scope.objetoSelecionado.id
 		}
     	//OBTER O TAMANHO DA API
-    	requisicaoService.requisitarPOST("cor/obterPorId", param , function(retorno) {
+    	requisicaoService.requisitarPOST("unidadeDeMedida/obterPorId", param , function(retorno) {
 			if (!retorno.isValid) {
     			alert(retorno.msg);
         		return;
     		}
 			$scope.cadastro = retorno.data;
-	    	$scope.tela = "Produto > Cor > Editar";
+	    	$scope.tela = "Produto > Unidade de Medida > Editar";
 			$scope.cadastrando = true;
 			$scope.editando = true;
 		});
@@ -105,7 +109,7 @@ app.controller("corController", function ($scope, requisicaoService, filterFilte
 		}
 
     	//DELETAR
-    	requisicaoService.requisitarPOST("cor/removerPorId", param, function(retorno){
+    	requisicaoService.requisitarPOST("unidadeDeMedida/removerPorId", param, function(retorno){
 	    		if (!retorno.isValid) {
 	    			alert(retorno.msg)
 	        		return;
@@ -118,8 +122,9 @@ app.controller("corController", function ($scope, requisicaoService, filterFilte
 
 	//FILTRAR
 	$scope.pesquisar = function(){
-		$scope.coresFiltradas = orderByFilter(filterFilter($scope.cores,{
+		$scope.unidadeDeMedidasFiltradas = orderByFilter(filterFilter($scope.unidadeDeMedidas,{
 			id:$scope.idFilter,
+			descricao: $scope.descricaoFilter,
 			descricao: $scope.descricaoFilter,
 			tipo: $scope.tipoFilter
 		}), $scope.campoOrdenacao);
@@ -141,15 +146,15 @@ app.controller("corController", function ($scope, requisicaoService, filterFilte
 	function carregarConteudo() {
     	
 		//OBTER REGISTROS DA API
-    	requisicaoService.requisitarGET("cor/obterTodos", function(retorno) {
+    	requisicaoService.requisitarGET("unidadeDeMedida/obterTodos", function(retorno) {
 			console.log(retorno);
     		if (!retorno.isValid) {
 				alert("Houve um problema!", retorno.msg);
         		return;
     		}
-			$scope.cores = retorno.data;
+			$scope.unidadeDeMedidas = retorno.data;
 			$scope.pesquisar();
 		});
     
 	}
-});
+})
