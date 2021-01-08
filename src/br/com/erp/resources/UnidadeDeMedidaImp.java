@@ -28,6 +28,7 @@ public class UnidadeDeMedidaImp {
 		try {
 			em.getTransaction().begin();
 			if (unidade.getId() == null) {
+				System.out.println(unidade.getDescricao());
 				em.persist(unidade);
 			} else {
 				em.merge(unidade);

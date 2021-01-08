@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Transient;
 
+@Entity
 public class UnidadeDeMedida {
     @Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
