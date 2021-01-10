@@ -1,50 +1,53 @@
-app.controller("marcaController", function ($scope, requisicaoService, filterFilter, orderByFilter) {
-	$scope.tela = "Produto > Marca";
+app.controller("produtoController", function ($scope, requisicaoService, filterFilter, orderByFilter) {
+	$scope.tela = "Produto";
 	$scope.cadastrando = false;
 	$scope.editando = false;
-	$scope.marcas = [];
+	$scope.produtos = [];
 
 	carregarConteudo();
 	
 	//INCLUIR
 	$scope.btnIncluir = function() {
-		$scope.tela = "Produto > Marca > Incluir";
+		$scope.tela = "Produto > Incluir";
 		$scope.cadastrando = true;
 		$scope.cadastro = {};
 		$scope.cadastro.status = 1;
 		$scope.cadastro.id = null;
+		$scope.cadastro.cor = "null";
+		$scope.cadastro.marca = "null";
+		$scope.cadastro.tamanho = "null";
+		$scope.cadastro.unidadeDeMedida = "null";
 	}
 
 	//VOLTAR
 	$scope.btnVoltar = function() {
-		$scope.tela = "Produto > Marca";
+		$scope.tela = "Produto";
 		$scope.cadastrando = false;
-		delete $scope.objetoSelecionado;
 		carregarConteudo();
 	}
 
 	//SALVAR
-	$scope.btnSalvar = function(marca) {
+	$scope.btnSalvar = function(pcadastro) {
 				
 		$scope.mensagemRodape = "";
 
 		//VALIDAÇÕES 
-		if (!marca) {
+		if (!pcadastro) {
 			$scope.mensagemRodape = "Por favor preencha os campos!";
 			document.getElementById("cDescricao").focus();
 		}
-		if (!marca.descricao) {
+		if (!pcadastro.descricao) {
 			$scope.mensagemRodape = "Por favor preencha o campo Descrição!";
 			document.getElementById("cDescricao").focus();
 		}
 
 		//SALVA O ITEM NA API
-		requisicaoService.requisitarPOST("marca/salvar", marca, function(retorno){
+		requisicaoService.requisitarPOST("produto/salvar", pcadastro, function(retorno){
     		if (!retorno.isValid) {
-    			alert(retorno.msg);
+    			$scope.mostrarModal("Erro!", retorno.msg, "bg-danger", null);
 				return;
     		} else {
-				$scope.tela = "Produto > Marca";
+				$scope.tela = "Produto";
 				$scope.cadastrando = false;
 				$scope.editando = false;
 				delete $scope.cadastro;
@@ -52,7 +55,7 @@ app.controller("marcaController", function ($scope, requisicaoService, filterFil
 			carregarConteudo()
     	});
 
-		$scope.tela = "Produto > Marca";
+		$scope.tela = "Produto";
 		$scope.cadastrando = false;
 		$scope.editando = false;
 		
@@ -70,20 +73,20 @@ app.controller("marcaController", function ($scope, requisicaoService, filterFil
 			int1: $scope.objetoSelecionado.id
 		}
     	//OBTER O TAMANHO DA API
-    	requisicaoService.requisitarPOST("marca/obterPorId", param , function(retorno) {
+    	requisicaoService.requisitarPOST("produto/obterPorId", param , function(retorno) {
 			if (!retorno.isValid) {
     			$scope.mostrarModal("Erro!", retorno.msg, "bg-danger", null);
         		return;
     		}
 			$scope.cadastro = retorno.data;
-	    	$scope.tela = "Produto > Marca > Editar";
+	    	$scope.tela = "Produto > Editar";
 			$scope.cadastrando = true;
 			$scope.editando = true;
 		});
     }
 
 	//EXCLUIR
-	$scope.btnExcluir = function() {
+	$scope.btnExcluir = function(){
     	$scope.mensagemRodape = "";
     	$scope.mensagemModal  = "";
     	if (!$scope.objetoSelecionado) {
@@ -97,7 +100,7 @@ app.controller("marcaController", function ($scope, requisicaoService, filterFil
 			};
 			
 			//DELETAR
-	    	requisicaoService.requisitarPOST("marca/removerPorId", param, function(retorno) {
+	    	requisicaoService.requisitarPOST("produto/removerPorId", param, function(retorno) {
 		    		if (!retorno.isValid) {
 		    			$scope.mostrarModal("Erro!", retorno.msg, "bg-warning", null);
 		        		return;
@@ -110,9 +113,18 @@ app.controller("marcaController", function ($scope, requisicaoService, filterFil
 
 	//FILTRAR
 	$scope.pesquisar = function(){
-		$scope.marcasFiltradas = orderByFilter(filterFilter($scope.marcas,{
+		$scope.produtosFiltrados = orderByFilter(filterFilter($scope.produtos,{
 			id:$scope.idFilter,
 			descricao: $scope.descricaoFilter,
+			quantidadeMinima: $scope.quantidadeMinimaFilter,
+			quantidadeMaxima: $scope.quantidadeMaximaFilter,
+			quantidadeAtual: $scope.quantidadeAtualFilter,
+			precoCusto: $scope.precoCustoFilter,
+			precoVenda:	$scope.precoVendaFilter,
+			cor: $scope.corFilter,
+			marca: $scope.marcaFilter,
+			tamanho: $scope.tamanhoFilter,
+			unidadeDeMedida: $scope.unidadeDeMedida
 		}), $scope.campoOrdenacao);
 	}
 
@@ -132,15 +144,63 @@ app.controller("marcaController", function ($scope, requisicaoService, filterFil
 	function carregarConteudo() {
     	
 		//OBTER REGISTROS DA API
-    	requisicaoService.requisitarGET("marca/obterTodos", function(retorno) {
+    	requisicaoService.requisitarGET("produto/obterTodos", function(retorno) {
     		if (!retorno.isValid) {
 		    	$scope.mostrarModal("Erro!", retorno.msg, "bg-warning", null);
         		return;
     		}
-			$scope.marcas = retorno.data;
+			$scope.produtos = retorno.data;
 			$scope.pesquisar();
 		});
     
+	}
+	
+	//CARREGA CORES
+	$scope.carregarCores = function() {
+		//OBTER REGISTROS DA API
+    	requisicaoService.requisitarGET("cor/obterTodosAtivos", function(retorno) {
+    		if (!retorno.isValid) {
+		    	$scope.mostrarModal("Erro!", retorno.msg, "bg-warning", null);
+        		return;
+    		}
+			$scope.cores = retorno.data;
+		});
+	}
+	
+	//CARREGA MARCAS
+	$scope.carregarMarcas = function() {
+		//OBTER REGISTROS DA API
+    	requisicaoService.requisitarGET("marca/obterTodosAtivos", function(retorno) {
+    		if (!retorno.isValid) {
+				alert("Houve um problema!", retorno.msg);
+        		return;
+    		}
+			$scope.marcas = retorno.data;
+		});
+	}
+	
+	//CARREGA TAMANHOS
+	$scope.carregarTamanhos = function() {
+		//OBTER REGISTROS DA API
+    	requisicaoService.requisitarGET("tamanho/obterTodosAtivos", function(retorno) {
+    		if (!retorno.isValid) {
+		    	$scope.mostrarModal("Erro!", retorno.msg, "bg-warning", null);
+        		return;
+    		}
+			$scope.tamanhos = retorno.data;
+		});
+	}
+	
+	//CARREGA UNIDADE DE MEDIDAS
+	$scope.carregarUnidadeDeMedidas = function() {
+		//OBTER REGISTROS DA API
+    	requisicaoService.requisitarGET("unidadeDeMedida/obterTodosAtivos", function(retorno) {
+    		if (!retorno.isValid) {
+		    	$scope.mostrarModal("Erro!", retorno.msg, "bg-warning", null);
+        		return;
+    		}
+			$scope.unidadeDeMedidas = retorno.data;
+		});
 	}
 	
 	//MODAL
@@ -155,5 +215,4 @@ app.controller("marcaController", function ($scope, requisicaoService, filterFil
 		
 		$('#modal-container').modal();
 	}
-	
 })

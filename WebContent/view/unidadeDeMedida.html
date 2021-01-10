@@ -123,4 +123,29 @@
 			</div>
 		</div>
 	</div>
+	
+	<!-- MODAL -->
+	<div class="modal" id="modal-container">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header" ng-class="modal.type">
+					<i class="nav-icon fas fa-exclamation-triangle fa-2x sp-lg"></i>
+					<h4 class="modal-title" ng-bind="modal.title"></h4>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<i class="nav-icon fas fa-times"></i>
+					</button>
+				</div>
+				<div class="modal-body">
+					<p ng-bind="modal.message"></p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary pull-right" data-dismiss="modal" ng-show="modal.onConfirm">Cancelar</button>
+					<button type="button" class="btn btn-primary pull-right" data-dismiss="modal" ng-click="modal.onConfirm()" ng-show="modal.onConfirm">Confirmar</button>
+					<button type="button" class="btn btn-primary pull-right" data-dismiss="modal" ng-show="!modal.onConfirm">OK</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
 </div>

@@ -4,8 +4,6 @@ app.controller("corController", function ($scope, requisicaoService, filterFilte
 	$scope.editando = false;
 	$scope.marcas = [];
 
-	$scope.mostrarModal = true;
-	$('#modalExcluir').modal();
 	carregarConteudo();
 	
 	//INCLUIR
@@ -144,7 +142,7 @@ app.controller("corController", function ($scope, requisicaoService, filterFilte
 		//OBTER REGISTROS DA API
     	requisicaoService.requisitarGET("cor/obterTodos", function(retorno) {
     		if (!retorno.isValid) {
-				$scope.mostrarModal("Houve um problema!", retorno.msg, "bg-danger", null);
+		    	$scope.mostrarModal("Erro!", retorno.msg, "bg-warning", null);
         		return;
     		}
 			$scope.cores = retorno.data;
