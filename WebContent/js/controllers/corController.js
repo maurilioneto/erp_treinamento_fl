@@ -4,6 +4,8 @@ app.controller("corController", function ($scope, requisicaoService, filterFilte
 	$scope.editando = false;
 	$scope.marcas = [];
 
+	$scope.mostrarModal = true;
+	$('#modalExcluir').modal();
 	carregarConteudo();
 	
 	//INCLUIR
@@ -27,6 +29,7 @@ app.controller("corController", function ($scope, requisicaoService, filterFilte
 	$scope.btnVoltar = function() {
 		$scope.tela = "Produto > Cor";
 		$scope.cadastrando = false;
+		delete $scope.objetoSelecionado;
 		carregarConteudo();
 	}
 
@@ -48,7 +51,7 @@ app.controller("corController", function ($scope, requisicaoService, filterFilte
 		//SALVA O ITEM NA API
 		requisicaoService.requisitarPOST("cor/salvar", cor, function(retorno){
     		if (!retorno.isValid) {
-    			alert(retorno.msg);
+    			$scope.mostrarModal("Erro!", retorno.msg, "bg-danger", null);
 				return;
     		} else {
 				$scope.tela = "Produto > Marca";
@@ -70,7 +73,7 @@ app.controller("corController", function ($scope, requisicaoService, filterFilte
 	$scope.btnEditar = function() {
 		//VALIDAÇÕES 	
     	if (!$scope.objetoSelecionado) {
-            alert("É necessário selecionar o registro que deseja editar!");
+    		$scope.mostrarModal("Atenção!", "É necessário selecionar o registro que deseja alterar!", "bg-warning", null);
     		return;
     	}
     	var param = {
@@ -79,7 +82,7 @@ app.controller("corController", function ($scope, requisicaoService, filterFilte
     	//OBTER O TAMANHO DA API
     	requisicaoService.requisitarPOST("cor/obterPorId", param , function(retorno) {
 			if (!retorno.isValid) {
-    			alert(retorno.msg);
+    			$scope.mostrarModal("Erro!", retorno.msg, "bg-danger", null);
         		return;
     		}
 			$scope.cadastro = retorno.data;
@@ -94,26 +97,25 @@ app.controller("corController", function ($scope, requisicaoService, filterFilte
     	$scope.mensagemRodape = "";
     	$scope.mensagemModal  = "";
     	if (!$scope.objetoSelecionado) {
-            $scope.mensagemModal  = "É necessário selecionar o registro que deseja excluir!";
-        	$('#modalAtencao').modal();
+    		$scope.mostrarModal("Atenção!", "É necessário selecionar o registro que deseja excluir!", "bg-warning", null);
     		return;
     	}
 
-    	if (confirm("Deseja mesmo excluir este registro?")) {
+		$scope.mostrarModal("Confirmar", "Deseja mesmo excluir este cadastro?", "bg-danger", function () {
 			var param = {
-			int1: $scope.objetoSelecionado.id
-		}
-
-    	//DELETAR
-    	requisicaoService.requisitarPOST("cor/removerPorId", param, function(retorno){
-	    		if (!retorno.isValid) {
-	    			alert(retorno.msg)
-	        		return;
-	    		}
-
-	    		carregarConteudo();
-    		});
-		}
+				int1: $scope.objetoSelecionado.id
+			};
+			
+			//DELETAR
+	    	requisicaoService.requisitarPOST("cor/removerPorId", param, function(retorno) {
+		    		if (!retorno.isValid) {
+		    			$scope.mostrarModal("Erro!", retorno.msg, "bg-warning", null);
+		        		return;
+		    		}
+	
+		    		carregarConteudo();
+	    	});
+		});
     }
 
 	//FILTRAR
@@ -141,9 +143,8 @@ app.controller("corController", function ($scope, requisicaoService, filterFilte
     	
 		//OBTER REGISTROS DA API
     	requisicaoService.requisitarGET("cor/obterTodos", function(retorno) {
-			console.log(retorno);
     		if (!retorno.isValid) {
-				alert("Houve um problema!", retorno.msg);
+				$scope.mostrarModal("Houve um problema!", retorno.msg, "bg-danger", null);
         		return;
     		}
 			$scope.cores = retorno.data;
@@ -151,4 +152,18 @@ app.controller("corController", function ($scope, requisicaoService, filterFilte
 		});
     
 	}
+	
+	//MODAL
+	//arg _type -> ['bg-danger' | 'bg-warning' | 'bg-alert' | 'bg-sucess']
+	//arg onConfirm -> callback to 'CONFIRM' button, if null shows only 'OK' button
+	$scope.mostrarModal = function (_title, _message, _type, _onConfirm) {
+		$scope.modal = {};
+		$scope.modal.title = _title;
+		$scope.modal.message = _message;
+		$scope.modal.onConfirm = _onConfirm;
+		$scope.modal.type = _type;
+		
+		$('#modal-container').modal();
+	}
+
 });
