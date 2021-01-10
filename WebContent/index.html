@@ -34,6 +34,8 @@
 </head>
 <body>
 	<div class="wrapper">
+		
+		<!-- BARRA SUPERIOR -->
 		<div class="main-header">
 			<nav class="navbar navbar-expand navbar-white navbar-light">
 				<!-- Left navbar links -->
@@ -46,17 +48,15 @@
 				</ul>
 			</nav>
 		</div>
-		<!-- /.navbar -->
 	
-		<!-- Main Sidebar Container -->
+		<!-- BARRA LATERAL | MENU -->
 		<aside class="main-sidebar sidebar-dark-primary elevation-4">
-			
-			<!-- Sidebar -->
 			<div class="sidebar">
-				<!-- Sidebar Menu -->
 				<nav class="mt-2">
 					<ul class="nav nav-pills nav-sidebar flex-column"
 						data-widget="treeview" role="menu" data-accordion="false">
+						
+						<!-- MENU PRODUTO -->
 						<li class="nav-item has-treeview">
 							<a href="#" class="nav-link">
 								<i class="nav-icon fas fa-archive"></i>
@@ -64,6 +64,12 @@
 								<i class="fas fa-angle-left right"></i>
 							</a>
 							<ul class="nav nav-treeview">
+								<li class="nav-item">
+									<a href="#!/produto" class="nav-link"> 
+										<i class="far fa-circle nav-icon"></i>
+										<p>Produto</p>
+									</a>
+								</li>
 								<li class="nav-item">
 									<a href="#!/cor" class="nav-link"> 
 										<i class="far fa-circle nav-icon"></i>
@@ -89,6 +95,8 @@
 									</a>
 								</li>
 							</ul></li>
+							
+						<!-- MENU CLIENTE -->
 						<li class="nav-item has-treeview">
 							<a href="#" class="nav-link">
 								<i class="nav-icon fas fa-users"></i>
@@ -104,6 +112,8 @@
 								</li>
 							</ul>
 						</li>
+						
+						<!-- MENU PAGAMENTO -->
 						<li class="nav-item has-treeview">
 							<a href="#" class="nav-link">
 								<i class="nav-icon fas fa-dollar-sign"></i>
@@ -124,11 +134,10 @@
 			</div>
 		</aside>
 	
-		<!-- Content Wrapper. Contains page content -->
+		<!-- CONTEÚDO -->
 		<div class="content-wrapper margin-back">
 			<div ng-view></div>
 		</div>
-		
 		
 	</div>
 
@@ -161,11 +170,13 @@
 		src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 
 	<script src="js/app.js"></script>
+	<script src="js/directives/modalDirective.js"></script>
 	<script src="js/controllers/corController.js"></script>
 	<script src="js/controllers/categoriaController.js"></script>
 	<script src="js/controllers/marcaController.js"></script>
 	<script src="js/controllers/tamanhoController.js"></script>
 	<script src="js/controllers/unidadeDeMedidaController.js"></script>
+	<script src="js/controllers/produtoController.js"></script>
 	<script src="js/services/requisicaoService.js"></script>
 	<script src="js/config/routeConfig.js"></script>
 	<script src="lib/angular-messages.js"></script>
