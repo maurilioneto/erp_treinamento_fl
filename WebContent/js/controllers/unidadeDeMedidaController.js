@@ -32,14 +32,17 @@ app.controller("unidadeDeMedidaController", function ($scope, requisicaoService,
 		if (!unidadeDeMedida) {
 			$scope.mensagemRodape = "Por favor preencha os campos!";
 			document.getElementById("cDescricao").focus();
+			return;
 		}
 		if (!unidadeDeMedida.descricao) {
 			$scope.mensagemRodape = "Por favor preencha o campo Descrição!";
 			document.getElementById("cDescricao").focus();
+			return;
 		}
 		if (!unidadeDeMedida.sigla) {
 			$scope.mensagemRodape = "Por favor preencha o campo Sigla!";
 			document.getElementById("cDescricao").focus();
+			return;
 		}
 
 		//SALVA O ITEM NA API

@@ -32,14 +32,61 @@ app.controller("produtoController", function ($scope, requisicaoService, filterF
 				
 		$scope.mensagemRodape = "";
 
-		//VALIDAÇÕES 
+		//VALIDAÇÕES
 		if (!pcadastro) {
 			$scope.mensagemRodape = "Por favor preencha os campos!";
 			document.getElementById("cDescricao").focus();
+			return;
 		}
 		if (!pcadastro.descricao) {
 			$scope.mensagemRodape = "Por favor preencha o campo Descrição!";
 			document.getElementById("cDescricao").focus();
+			return;
+		}
+		if (!pcadastro.quantidadeMinima && pcadastro.quantidadeMinima != 0) {
+			$scope.mensagemRodape = "Por favor preencha o campo Quantidade Mínima!";
+			document.getElementById("cQuantidadeMinima").focus();
+			return;
+		}
+		if (!pcadastro.quantidadeMaxima && pcadastro.quantidadeMaxima != 0) {
+			$scope.mensagemRodape = "Por favor preencha o campo Quantidade Máxima!";
+			document.getElementById("cQuantidadeMaxima").focus();
+			return;
+		}
+		if (!pcadastro.quantidadeAtual && pcadastro.quantidadeAtual != 0) {
+			$scope.mensagemRodape = "Por favor preencha o campo Quantidade Atual!";
+			document.getElementById("cQuantidadeAtual").focus();
+			return;
+		}
+		if (!pcadastro.precoCusto) {
+			$scope.mensagemRodape = "Por favor preencha o campo Preço de Custo";
+			document.getElementById("cPrecoCusto").focus();
+			return;
+		}
+		if (!pcadastro.precoVenda) {
+			$scope.mensagemRodape = "Por favor preencha o campo Preço de Venda";
+			document.getElementById("cPrecoVenda").focus();
+			return;
+		}
+		if (!pcadastro.cor || pcadastro.cor == 'null') {
+			$scope.mensagemRodape = "Por favor selecione uma Cor!";
+			document.getElementById("cCor").focus();
+			return;
+		}
+		if (!pcadastro.marca || pcadastro.marca == 'null') {
+			$scope.mensagemRodape = "Por favor selecione uma Marca!";
+			document.getElementById("cMarca").focus();
+			return;
+		}
+		if (!pcadastro.tamanho || pcadastro.tamanho == 'null') {
+			$scope.mensagemRodape = "Por favor selecione uma Tamanho!";
+			document.getElementById("cTamanho").focus();
+			return;
+		}
+		if (!pcadastro.unidadeDeMedida || pcadastro.unidadeDeMedida == 'null') {
+			$scope.mensagemRodape = "Por favor selecione uma Unidade de Medida!";
+			document.getElementById("cUnidadeDeMedida").focus();
+			return;
 		}
 
 		//CONFIGURAR OBJETO
@@ -230,4 +277,5 @@ app.controller("produtoController", function ($scope, requisicaoService, filterF
 		
 		$('#modal-container').modal();
 	}
+	
 })

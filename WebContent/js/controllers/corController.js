@@ -36,16 +36,18 @@ app.controller("corController", function ($scope, requisicaoService, filterFilte
 				
 		$scope.mensagemRodape = "";
 
-		//VALIDAÇÕES 
+		//VALIDAÇÕES
 		if (!cor) {
 			$scope.mensagemRodape = "Por favor preencha os campos!";
 			document.getElementById("cDescricao").focus();
+			return;
 		}
 		if (!cor.descricao) {
 			$scope.mensagemRodape = "Por favor preencha o campo Descrição!";
 			document.getElementById("cDescricao").focus();
+			return;
 		}
-
+		
 		//SALVA O ITEM NA API
 		requisicaoService.requisitarPOST("cor/salvar", cor, function(retorno){
     		if (!retorno.isValid) {

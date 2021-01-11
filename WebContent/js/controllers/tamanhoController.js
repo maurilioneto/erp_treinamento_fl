@@ -32,10 +32,12 @@ app.controller("tamanhoController", function ($scope, requisicaoService, filterF
 		if (!tamanho) {
 			$scope.mensagemRodape = "Por favor preencha os campos!";
 			document.getElementById("cDescricao").focus();
+			return;
 		}
 		if (!tamanho.descricao) {
 			$scope.mensagemRodape = "Por favor preencha o campo Descrição!";
 			document.getElementById("cDescricao").focus();
+			return;
 		}
 
 		//SALVA O ITEM NA API

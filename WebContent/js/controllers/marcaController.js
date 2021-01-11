@@ -32,10 +32,12 @@ app.controller("marcaController", function ($scope, requisicaoService, filterFil
 		if (!marca) {
 			$scope.mensagemRodape = "Por favor preencha os campos!";
 			document.getElementById("cDescricao").focus();
+			return;
 		}
 		if (!marca.descricao) {
 			$scope.mensagemRodape = "Por favor preencha o campo Descrição!";
 			document.getElementById("cDescricao").focus();
+			return;
 		}
 
 		//SALVA O ITEM NA API
