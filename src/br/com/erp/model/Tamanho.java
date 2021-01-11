@@ -1,5 +1,6 @@
 package br.com.erp.model;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -7,7 +8,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Transient;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Tamanho {
@@ -19,6 +23,11 @@ public class Tamanho {
 	private String descricao;
 	@Column(length = 1, name = "STATUS")
 	private Integer status;
+	
+	//RELAÇÕES
+	@OneToMany(mappedBy="tamanho")
+	@JsonIgnore
+	private List<Produto> produtos;
 	
 	@Transient
 	private String descStatus;
