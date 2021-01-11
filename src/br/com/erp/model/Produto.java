@@ -13,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 
+import com.sun.istack.NotNull;
+
 @Entity
 public class Produto {
 	
@@ -22,24 +24,31 @@ public class Produto {
 	    @Column(name = "ID")
 	    private Integer id;
 	 	
+	 	@NotNull
 	    @Column(length = 100, name = "DESCRICAO")
 		private String descricao;
 	    
+	 	@NotNull
 	    @Column(name = "QUANTIDADE_MINIMA")
 		private Integer quantidadeMinima;
 	    
+	 	@NotNull
 	    @Column(name = "QUANTIDADE_MAXIMA")
 		private Integer quantidadeMaxima;
 	    
+	 	@NotNull
 	    @Column(name = "QUANTIDADE_ATUAL")
 		private Integer quantidadeAtual;
 	    
+	 	@NotNull
 	    @Column(name = "PRECO_CUSTO")
 		private Float precoCusto;
 	    
+	 	@NotNull
 	    @Column(name = "PRECO_VENDA")
 		private Float precoVenda;
 	    
+	 	@NotNull
 		@Column(length = 1, name = "STATUS")
 		private Integer status;
 
@@ -49,18 +58,22 @@ public class Produto {
 	    //RELAÇÕES
 	    @ManyToOne
 	    @JoinColumn(name = "COR_ID", referencedColumnName = "ID")
+	    @NotNull
 	    private Cor cor;
 	    
 	    @ManyToOne
 	    @JoinColumn(name = "MARCA_ID", referencedColumnName = "ID")
+	    @NotNull
 	    private Marca marca;
 	    
 	    @ManyToOne
 	    @JoinColumn(name = "TAMANHO_ID", referencedColumnName = "ID")
+	    @NotNull
 	    private Tamanho tamanho;
 	    
 	    @ManyToOne
 	    @JoinColumn(name = "UNIDADE_DE_MEDIDA_ID", referencedColumnName = "ID")
+	    @NotNull
 	    private UnidadeDeMedida unidadeDeMedida;
 	    
 	    //METODOS

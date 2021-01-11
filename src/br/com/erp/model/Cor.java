@@ -14,6 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.sun.istack.NotNull;
 
 import br.com.erp.util.UnidadePersistencia;
 
@@ -25,9 +26,13 @@ public class Cor {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "ID")
 	private Integer id;
+	
 	@Column(length = 100, name = "DESCRICAO")
+	@NotNull
 	private String descricao;
+	
 	@Column(length = 1, name = "STATUS")
+	@NotNull
 	private Integer status;
 	
 	@Transient
