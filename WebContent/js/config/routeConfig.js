@@ -1,4 +1,10 @@
 angular.module("listaTelefonica").config(function ($routeProvider){
+	
+	$routeProvider.when("/produto", {
+		templateUrl: "view/produto.html",
+		controller: "produtoController",
+	});
+	
 	$routeProvider.when("/cor", {
 		templateUrl: "view/cor.html",
 		controller: "corController",

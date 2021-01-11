@@ -23,6 +23,7 @@ app.controller("produtoController", function ($scope, requisicaoService, filterF
 	$scope.btnVoltar = function() {
 		$scope.tela = "Produto";
 		$scope.cadastrando = false;
+		delete $scope.objetoSelecionado;
 		carregarConteudo();
 	}
 
@@ -41,8 +42,14 @@ app.controller("produtoController", function ($scope, requisicaoService, filterF
 			document.getElementById("cDescricao").focus();
 		}
 
+		//CONFIGURAR OBJETO
+		let cad = {...pcadastro};
+		cad.cor = {id: pcadastro.cor};
+		cad.marca = {id: pcadastro.marca};
+		cad.tamanho = {id: pcadastro.tamanho};
+		cad.unidadeDeMedida = {id: pcadastro.unidadeDeMedida};
 		//SALVA O ITEM NA API
-		requisicaoService.requisitarPOST("produto/salvar", pcadastro, function(retorno){
+		requisicaoService.requisitarPOST("produto/salvar", cad, function(retorno){
     		if (!retorno.isValid) {
     			$scope.mostrarModal("Erro!", retorno.msg, "bg-danger", null);
 				return;
@@ -79,9 +86,17 @@ app.controller("produtoController", function ($scope, requisicaoService, filterF
         		return;
     		}
 			$scope.cadastro = retorno.data;
+			$scope.cadastro.cor = $scope.cadastro.cor.id;
+			$scope.cadastro.marca = $scope.cadastro.marca.id;
+			$scope.cadastro.tamanho = $scope.cadastro.tamanho.id;
+			$scope.cadastro.unidadeDeMedida = $scope.cadastro.unidadeDeMedida.id;
 	    	$scope.tela = "Produto > Editar";
 			$scope.cadastrando = true;
 			$scope.editando = true;
+			$scope.carregarCores();
+			$scope.carregarMarcas();
+			$scope.carregarTamanhos();
+			$scope.carregarUnidadeDeMedidas();			
 		});
     }
 

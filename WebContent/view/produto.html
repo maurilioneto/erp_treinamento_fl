@@ -1,0 +1,283 @@
+<div>
+	<div>
+		<!-- CAMINHO DA TELA -->
+		<div class="content-header" ng-con>
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-sm-12">
+						<h1 class="m-0 text-dark" ng-bind="tela"></h1>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- TELA DE CONSULTA -->
+	<div class="wrapper" ng-show="!cadastrando">
+		<div class="card">
+			<div class="card-header">
+				<div class="d-flex flex-row">
+					<button type="button" ng-click="btnIncluir()" class="btn btn-outline-primary btn-lg d-inline-flex flex-row align-items-center sp-lt">
+						<i class="nav-icon fas fa-plus"></i>
+						<div class="button-text">Incluir</div>
+					</button>
+					<button type="button" ng-click="btnEditar(objetoSelecionado)" class="btn btn-outline-primary btn-lg d-inline-flex flex-row align-items-center sp-lt">
+						<i class="nav-icon fas fa-pen"></i>
+						<div class="button-text">Editar</div>
+					</button>
+					<button type="button" ng-click="btnExcluir()" class="btn btn-outline-danger btn-lg d-inline-flex flex-row align-items-center sp-lt">
+						<i class="nav-icon fas fa-trash"></i>
+						<div class="button-text">Excluir</div>
+					</button>
+				</div>
+			</div>
+			<div class="card-body">
+				<div class="table-responsive table-pesquisa-fixa">
+					<table class="table table-bordered table-condensed">
+						<thead>
+							<tr>
+								<th width="50px">
+									<a href="" ng-click="ordenacao('id')" title="Ordenar">
+										Cód. 
+										<span ng-show="campoOrdenacao == '+id'" class="glyphicon glyphicon-sort-by-attributes" />
+										<span ng-show="campoOrdenacao == '-id'" class="glyphicon glyphicon-sort-by-attributes-alt" />
+									</a>
+									<input type="text" name="id" ng-model="idFilter" class="form-control" placeholder="Pesquisar..." ng-change="pesquisar()" mask-maiusculas>
+								</th>
+								<th>
+									<a href="" ng-click="ordenacao('descricao')" title="Ordenar">
+										Descrição 
+										<span ng-show="campoOrdenacao == '+descricao'" class="glyphicon glyphicon-sort-by-attributes" />
+										<span ng-show="campoOrdenacao == '-descricao'" class="glyphicon glyphicon-sort-by-attributes-alt" />
+									</a>
+									<input type="text" name="id" ng-model="descricaoFilter" class="form-control" placeholder="Pesquisar..." ng-change="pesquisar()" mask-maiusculas>
+								</th>
+								<th width="80px">
+									<a href="" ng-click="ordenacao('quantidadeMaxima')" title="Ordenar">
+										Quantidade Máxima 
+										<span ng-show="campoOrdenacao == '+quantidadeMaxima'" class="glyphicon glyphicon-sort-by-attributes" />
+										<span ng-show="campoOrdenacao == '-quantidadeMaxima'" class="glyphicon glyphicon-sort-by-attributes-alt" />
+									</a>
+									<input type="text" name="id" ng-model="quantidadeMaximaFilter" class="form-control" placeholder="Pesquisar..." ng-change="pesquisar()" mask-maiusculas>
+								</th>
+								<th width="80px">
+									<a href="" ng-click="ordenacao('quantidadeMinima')" title="Ordenar">
+										Quantidade Mínima 
+										<span ng-show="campoOrdenacao == '+quantidadeMinima'" class="glyphicon glyphicon-sort-by-attributes" />
+										<span ng-show="campoOrdenacao == '-quantidadeMinima'" class="glyphicon glyphicon-sort-by-attributes-alt" />
+									</a>
+									<input type="text" name="id" ng-model="quantidadeMinimaFilter" class="form-control" placeholder="Pesquisar..." ng-change="pesquisar()" mask-maiusculas>
+								</th>
+								<th width="80px">
+									<a href="" ng-click="ordenacao('quantidadeAtual')" title="Ordenar">
+										Quantidade Atual 
+										<span ng-show="campoOrdenacao == '+quantidadeAtual'" class="glyphicon glyphicon-sort-by-attributes" />
+										<span ng-show="campoOrdenacao == '-quantidadeAtual'" class="glyphicon glyphicon-sort-by-attributes-alt" />
+									</a>
+									<input type="text" name="id" ng-model="quantidadeAtualFilter" class="form-control" placeholder="Pesquisar..." ng-change="pesquisar()" mask-maiusculas>
+								</th>
+								<th width="80px">
+									<a href="" ng-click="ordenacao('precoCusto')" title="Ordenar">
+										Preço de Custo
+										<span ng-show="campoOrdenacao == '+precoCusto'" class="glyphicon glyphicon-sort-by-attributes" />
+										<span ng-show="campoOrdenacao == '-precoCusto'" class="glyphicon glyphicon-sort-by-attributes-alt" />
+									</a>
+									<input type="text" name="id" ng-model="precoCustoFilter" class="form-control" placeholder="Pesquisar..." ng-change="pesquisar()" mask-maiusculas>
+								</th>
+								<th width="80px">
+									<a href="" ng-click="ordenacao('precoVenda')" title="Ordenar">
+										Preço de Venda
+										<span ng-show="campoOrdenacao == '+precoVenda'" class="glyphicon glyphicon-sort-by-attributes" />
+										<span ng-show="campoOrdenacao == '-precoVenda'" class="glyphicon glyphicon-sort-by-attributes-alt" />
+									</a>
+									<input type="text" name="id" ng-model="precoVendaFilter" class="form-control" placeholder="Pesquisar..." ng-change="pesquisar()" mask-maiusculas>
+								</th>
+								<th width="80px">
+									<a href="" ng-click="ordenacao('cor')" title="Ordenar">
+										Cor
+										<span ng-show="campoOrdenacao == '+cor'" class="glyphicon glyphicon-sort-by-attributes" />
+										<span ng-show="campoOrdenacao == '-cor'" class="glyphicon glyphicon-sort-by-attributes-alt" />
+									</a>
+									<input type="text" name="id" ng-model="corFilter" class="form-control" placeholder="Pesquisar..." ng-change="pesquisar()" mask-maiusculas>
+								</th>
+								<th width="80px">
+									<a href="" ng-click="ordenacao('marca')" title="Ordenar">
+										Marca
+										<span ng-show="campoOrdenacao == '+marca'" class="glyphicon glyphicon-sort-by-attributes" />
+										<span ng-show="campoOrdenacao == '-marca'" class="glyphicon glyphicon-sort-by-attributes-alt" />
+									</a>
+									<input type="text" name="id" ng-model="marcaFilter" class="form-control" placeholder="Pesquisar..." ng-change="pesquisar()" mask-maiusculas>
+								</th>
+								<th width="80px">
+									<a href="" ng-click="ordenacao('tamanho')" title="Ordenar">
+										Tamanho
+										<span ng-show="campoOrdenacao == '+tamanho'" class="glyphicon glyphicon-sort-by-attributes" />
+										<span ng-show="campoOrdenacao == '-tamanho'" class="glyphicon glyphicon-sort-by-attributes-alt" />
+									</a>
+									<input type="text" name="id" ng-model="marcaFilter" class="form-control" placeholder="Pesquisar..." ng-change="pesquisar()" mask-maiusculas>
+								</th>
+								<th width="80px">
+									<a href="" ng-click="ordenacao('unidadeDeMedida')" title="Ordenar">
+										Un. de Medida
+										<span ng-show="campoOrdenacao == '+unidadeDeMedida'" class="glyphicon glyphicon-sort-by-attributes" />
+										<span ng-show="campoOrdenacao == '-unidadeDeMedida'" class="glyphicon glyphicon-sort-by-attributes-alt" />
+									</a>
+									<input type="text" name="id" ng-model="unidadeDeMedidaFilter" class="form-control" placeholder="Pesquisar..." ng-change="pesquisar()" mask-maiusculas>
+								</th>
+								<th width="50px">
+									<a href="" ng-click="ordenacao('descStatus')" title="Ordenar">
+										Status
+										<span ng-show="campoOrdenacao == '+status'" class="glyphicon glyphicon-sort-by-attributes" />
+										<span ng-show="campoOrdenacao == '-status'" class="glyphicon glyphicon-sort-by-attributes-alt" />
+									</a>
+									<input type="text" name="id" ng-model="statusFilter" class="form-control" placeholder="Pesquisar..." ng-change="pesquisar()" mask-maiusculas>
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="g in produtosFiltrados" ng-click="selecionarLinha(g)" ng-class="{linhaSelecionada : g == objetoSelecionado}">
+								<td>{{g.id}}</td>
+								<td>{{g.descricao}}</td>
+								<td>{{g.quantidadeMaxima}}</td>
+								<td>{{g.quantidadeMinima}}</td>
+								<td>{{g.quantidadeAtual}}</td>
+								<td>{{g.precoCusto | currency}}</td>
+								<td>{{g.precoVenda | currency}}</td>
+								<td>{{g.cor.descricao}}</td>
+								<td>{{g.marca.descricao}}</td>
+								<td>{{g.tamanho.descricao}}</td>
+								<td>{{g.unidadeDeMedida.sigla}}</td>
+								<td>{{g.descStatus}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- TELA DE CADASTRO -->
+	<div class="wrapper" ng-show="cadastrando">
+		<div class="card">
+			<div class="card-header">
+				<h1 class="display-5">Cadastro</h1>
+			</div>
+			<div class="card-body">
+				<div class="row">
+					<div class="col-md-2">
+						<label for="name">Código</label>
+						<input type="text" name="cCodigo" ng-model="cadastro.codigo" class="form-control" disabled/>
+					</div>
+					<div class="col-md-10">
+						<label for="name">Descrição</label>
+						<input type="text" id="cDescricao" ng-model="cadastro.descricao" class="form-control"  maxlength="100"/>
+					</div>
+					<div class="col-md-4">
+						<label for="name">Quantidade Mínima</label>
+						<input type="number" id="cQuantidadeMinima" ng-model="cadastro.quantidadeMinima" class="form-control"  maxlength="100" min="0" max="999999999999" step=1/>
+					</div>
+					<div class="col-md-4">
+						<label for="name">Quantidade Máxima</label>
+						<input type="number" id="cQuantidadeMaxima" ng-model="cadastro.quantidadeMaxima" class="form-control"  maxlength="100" min="0" max="999999999999" step=1/>
+					</div>
+					<div class="col-md-4">
+						<label for="name">Quantidade Atual</label>
+						<input type="number" id="cQuantidadeAtual" ng-model="cadastro.quantidadeAtual" class="form-control"  maxlength="100" min="0" step=1 pattern="\d+"/>
+					</div>
+					<div class="col-md-2">
+						<label for="name">Preço de Custo</label>
+						<div class="input-group">
+							<span class="input-group-text">R$</span>
+							<input type="text" id="cPrecoCusto" ng-model="cadastro.precoCusto" class="form-control" ui-currency/>
+						</div>
+					</div>
+					<div class="col-md-2">
+						<label for="name">Preco de Venda</label>
+						<div class="input-group">
+							<span class="input-group-text">R$</span>
+							<input type="text" id="cPrecoVenda" ng-model="cadastro.precoVenda" class="form-control" ui-currency/>
+						</div>
+					</div>
+					<div class="col-md-2">
+						<label for="name">Cor</label>
+						<select class="form-select form-control" ng-mouseover="cores || carregarCores()" ng-model="cadastro.cor" >
+							<option ng-value="cor.id" ng-repeat="cor in cores">
+								{{cor.descricao}}
+							</option>
+							<option value=null selected>SELECIONE UMA COR</option>
+						</select>
+					</div>
+					<div class="col-md-2">
+						<label for="name">Marca</label>
+						<select class="form-select form-control" ng-mouseover="marcas || carregarMarcas()" ng-model="cadastro.marca">
+							<option ng-value="marca.id" ng-repeat="marca in marcas">
+								{{marca.descricao}}
+							</option>
+							<option value=null selected>SELECIONE UMA MARCA</option>
+						</select>
+					</div>
+					<div class="col-md-2">
+						<label for="name">Tamanho</label>
+						<select class="form-select form-control" ng-mouseover="tamanhos || carregarTamanhos()" ng-model="cadastro.tamanho">
+							<option ng-value="tamanho.id" ng-repeat="tamanho in tamanhos">
+								{{tamanho.descricao}}
+							</option>	
+							<option value=null selected>SELECIONE UM TAMANHO</option>
+						</select>
+					</div>
+					<div class="col-md-2">
+						<label for="name">Unidade de Medida</label>
+						<select class="form-select form-control" ng-mouseover="unidadeDeMedidas || carregarUnidadeDeMedidas()" ng-model="cadastro.unidadeDeMedida">
+							<option ng-value="unidadeDeMedida.id" ng-repeat="unidadeDeMedida in unidadeDeMedidas">
+								{{unidadeDeMedida.descricao}}
+							</option>						
+							<option value=null selected>SELECIONE UMA UNIDADE DE MEDIDA</option>
+						</select>
+					</div>
+					<div class="col-md-2">
+						<div class="checkbox">
+							<label for="status">
+								<input type="checkbox" checked="cadastro.status" id="cStatus" ng-model="cadastro.status" class="checkbox" ng-disabled="!editando" ng-true-value="1" ng-false-value="0"/>
+								Ativo
+							</label>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="alert alert-danger alert-dismissible col-md-12 text-center" ng-show="mensagemRodape">
+						{{mensagemRodape}}
+					</div>
+				</div>
+			</div>
+			<div class="d-flex flex-row justify-content-end">
+				<button ng-click="btnVoltar()" class="btn btn-secondary btn-space">Voltar</button>
+				<button ng-click="btnSalvar(cadastro)" class="btn btn-primary btn-space">Salvar</button>
+			</div>
+		</div>
+	</div>
+	
+	<!-- MODAL -->
+	<div class="modal" id="modal-container">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header" ng-class="modal.type">
+					<i class="nav-icon fas fa-exclamation-triangle fa-2x sp-lg"></i>
+					<h4 class="modal-title" ng-bind="modal.title"></h4>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<i class="nav-icon fas fa-times"></i>
+					</button>
+				</div>
+				<div class="modal-body">
+					<p ng-bind="modal.message"></p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-outline-secondary pull-right" data-dismiss="modal" ng-show="modal.onConfirm">Cancelar</button>
+					<button type="button" class="btn btn-outline-primary pull-right" data-dismiss="modal" ng-click="modal.onConfirm()" ng-show="modal.onConfirm">Confirmar</button>
+					<button type="button" class="btn btn-outline-primary pull-right" data-dismiss="modal" ng-show="!modal.onConfirm">OK</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+</div>
