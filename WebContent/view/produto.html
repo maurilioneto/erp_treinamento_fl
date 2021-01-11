@@ -50,7 +50,7 @@
 										<span ng-show="campoOrdenacao == '+descricao'" class="glyphicon glyphicon-sort-by-attributes" />
 										<span ng-show="campoOrdenacao == '-descricao'" class="glyphicon glyphicon-sort-by-attributes-alt" />
 									</a>
-									<input type="text" name="id" ng-model="descricaoFilter" class="form-control" placeholder="Pesquisar..." ng-change="pesquisar()" mask-maiusculas>
+									<input type="text" name="descricao" ng-model="descricaoFilter" class="form-control" placeholder="Pesquisar..." ng-change="pesquisar()" mask-maiusculas>
 								</th>
 								<th width="80px">
 									<a href="" ng-click="ordenacao('quantidadeMaxima')" title="Ordenar">
@@ -58,7 +58,7 @@
 										<span ng-show="campoOrdenacao == '+quantidadeMaxima'" class="glyphicon glyphicon-sort-by-attributes" />
 										<span ng-show="campoOrdenacao == '-quantidadeMaxima'" class="glyphicon glyphicon-sort-by-attributes-alt" />
 									</a>
-									<input type="text" name="id" ng-model="quantidadeMaximaFilter" class="form-control" placeholder="Pesquisar..." ng-change="pesquisar()" mask-maiusculas>
+									<input type="text" name="quantidadeMaxima" ng-model="quantidadeMaximaFilter" class="form-control" placeholder="Pesquisar..." ng-change="pesquisar()" mask-maiusculas>
 								</th>
 								<th width="80px">
 									<a href="" ng-click="ordenacao('quantidadeMinima')" title="Ordenar">
@@ -66,7 +66,7 @@
 										<span ng-show="campoOrdenacao == '+quantidadeMinima'" class="glyphicon glyphicon-sort-by-attributes" />
 										<span ng-show="campoOrdenacao == '-quantidadeMinima'" class="glyphicon glyphicon-sort-by-attributes-alt" />
 									</a>
-									<input type="text" name="id" ng-model="quantidadeMinimaFilter" class="form-control" placeholder="Pesquisar..." ng-change="pesquisar()" mask-maiusculas>
+									<input type="text" name="quantidadeMinima" ng-model="quantidadeMinimaFilter" class="form-control" placeholder="Pesquisar..." ng-change="pesquisar()" mask-maiusculas>
 								</th>
 								<th width="80px">
 									<a href="" ng-click="ordenacao('quantidadeAtual')" title="Ordenar">
@@ -74,7 +74,7 @@
 										<span ng-show="campoOrdenacao == '+quantidadeAtual'" class="glyphicon glyphicon-sort-by-attributes" />
 										<span ng-show="campoOrdenacao == '-quantidadeAtual'" class="glyphicon glyphicon-sort-by-attributes-alt" />
 									</a>
-									<input type="text" name="id" ng-model="quantidadeAtualFilter" class="form-control" placeholder="Pesquisar..." ng-change="pesquisar()" mask-maiusculas>
+									<input type="text" name="quantidadeAtual" ng-model="quantidadeAtualFilter" class="form-control" placeholder="Pesquisar..." ng-change="pesquisar()" mask-maiusculas>
 								</th>
 								<th width="80px">
 									<a href="" ng-click="ordenacao('precoCusto')" title="Ordenar">
@@ -82,7 +82,7 @@
 										<span ng-show="campoOrdenacao == '+precoCusto'" class="glyphicon glyphicon-sort-by-attributes" />
 										<span ng-show="campoOrdenacao == '-precoCusto'" class="glyphicon glyphicon-sort-by-attributes-alt" />
 									</a>
-									<input type="text" name="id" ng-model="precoCustoFilter" class="form-control" placeholder="Pesquisar..." ng-change="pesquisar()" mask-maiusculas>
+									<input type="text" name="precoCusto" ng-model="precoCustoFilter" class="form-control" placeholder="Pesquisar..." ng-change="pesquisar()" mask-maiusculas>
 								</th>
 								<th width="80px">
 									<a href="" ng-click="ordenacao('precoVenda')" title="Ordenar">
@@ -90,7 +90,7 @@
 										<span ng-show="campoOrdenacao == '+precoVenda'" class="glyphicon glyphicon-sort-by-attributes" />
 										<span ng-show="campoOrdenacao == '-precoVenda'" class="glyphicon glyphicon-sort-by-attributes-alt" />
 									</a>
-									<input type="text" name="id" ng-model="precoVendaFilter" class="form-control" placeholder="Pesquisar..." ng-change="pesquisar()" mask-maiusculas>
+									<input type="text" name="precoVenda" ng-model="precoVendaFilter" class="form-control" placeholder="Pesquisar..." ng-change="pesquisar()" mask-maiusculas>
 								</th>
 								<th width="80px">
 									<a href="" ng-click="ordenacao('cor')" title="Ordenar">
@@ -98,7 +98,7 @@
 										<span ng-show="campoOrdenacao == '+cor'" class="glyphicon glyphicon-sort-by-attributes" />
 										<span ng-show="campoOrdenacao == '-cor'" class="glyphicon glyphicon-sort-by-attributes-alt" />
 									</a>
-									<input type="text" name="id" ng-model="corFilter" class="form-control" placeholder="Pesquisar..." ng-change="pesquisar()" mask-maiusculas>
+									<input type="text" name="cor" ng-model="corFilter" class="form-control" placeholder="Pesquisar..." ng-change="pesquisar()" mask-maiusculas>
 								</th>
 								<th width="80px">
 									<a href="" ng-click="ordenacao('marca')" title="Ordenar">
@@ -106,7 +106,7 @@
 										<span ng-show="campoOrdenacao == '+marca'" class="glyphicon glyphicon-sort-by-attributes" />
 										<span ng-show="campoOrdenacao == '-marca'" class="glyphicon glyphicon-sort-by-attributes-alt" />
 									</a>
-									<input type="text" name="id" ng-model="marcaFilter" class="form-control" placeholder="Pesquisar..." ng-change="pesquisar()" mask-maiusculas>
+									<input type="text" name="marca" ng-model="marcaFilter" class="form-control" placeholder="Pesquisar..." ng-change="pesquisar()" mask-maiusculas>
 								</th>
 								<th width="80px">
 									<a href="" ng-click="ordenacao('tamanho')" title="Ordenar">
@@ -114,7 +114,7 @@
 										<span ng-show="campoOrdenacao == '+tamanho'" class="glyphicon glyphicon-sort-by-attributes" />
 										<span ng-show="campoOrdenacao == '-tamanho'" class="glyphicon glyphicon-sort-by-attributes-alt" />
 									</a>
-									<input type="text" name="id" ng-model="marcaFilter" class="form-control" placeholder="Pesquisar..." ng-change="pesquisar()" mask-maiusculas>
+									<input type="text" name="tamanho" ng-model="marcaFilter" class="form-control" placeholder="Pesquisar..." ng-change="pesquisar()" mask-maiusculas>
 								</th>
 								<th width="80px">
 									<a href="" ng-click="ordenacao('unidadeDeMedida')" title="Ordenar">
@@ -122,7 +122,7 @@
 										<span ng-show="campoOrdenacao == '+unidadeDeMedida'" class="glyphicon glyphicon-sort-by-attributes" />
 										<span ng-show="campoOrdenacao == '-unidadeDeMedida'" class="glyphicon glyphicon-sort-by-attributes-alt" />
 									</a>
-									<input type="text" name="id" ng-model="unidadeDeMedidaFilter" class="form-control" placeholder="Pesquisar..." ng-change="pesquisar()" mask-maiusculas>
+									<input type="text" name="unidadeDeMedida" ng-model="unidadeDeMedidaFilter" class="form-control" placeholder="Pesquisar..." ng-change="pesquisar()" mask-maiusculas>
 								</th>
 								<th width="50px">
 									<a href="" ng-click="ordenacao('descStatus')" title="Ordenar">
@@ -130,7 +130,7 @@
 										<span ng-show="campoOrdenacao == '+status'" class="glyphicon glyphicon-sort-by-attributes" />
 										<span ng-show="campoOrdenacao == '-status'" class="glyphicon glyphicon-sort-by-attributes-alt" />
 									</a>
-									<input type="text" name="id" ng-model="statusFilter" class="form-control" placeholder="Pesquisar..." ng-change="pesquisar()" mask-maiusculas>
+									<input type="text" name="status" ng-model="statusFilter" class="form-control" placeholder="Pesquisar..." ng-change="pesquisar()" mask-maiusculas>
 								</th>
 							</tr>
 						</thead>
@@ -200,7 +200,7 @@
 					</div>
 					<div class="col-md-2">
 						<label for="name">Cor</label>
-						<select class="form-select form-control" ng-mouseover="cores || carregarCores()" ng-model="cadastro.cor" >
+						<select class="form-select form-control" id="cCor" ng-mouseover="cores || carregarCores()" ng-model="cadastro.cor">
 							<option ng-value="cor.id" ng-repeat="cor in cores">
 								{{cor.descricao}}
 							</option>
@@ -209,7 +209,7 @@
 					</div>
 					<div class="col-md-2">
 						<label for="name">Marca</label>
-						<select class="form-select form-control" ng-mouseover="marcas || carregarMarcas()" ng-model="cadastro.marca">
+						<select class="form-select form-control" id="cMarca" ng-mouseover="marcas || carregarMarcas()" ng-model="cadastro.marca">
 							<option ng-value="marca.id" ng-repeat="marca in marcas">
 								{{marca.descricao}}
 							</option>
@@ -218,7 +218,7 @@
 					</div>
 					<div class="col-md-2">
 						<label for="name">Tamanho</label>
-						<select class="form-select form-control" ng-mouseover="tamanhos || carregarTamanhos()" ng-model="cadastro.tamanho">
+						<select class="form-select form-control" id="cTamanho" ng-mouseover="tamanhos || carregarTamanhos()" ng-model="cadastro.tamanho">
 							<option ng-value="tamanho.id" ng-repeat="tamanho in tamanhos">
 								{{tamanho.descricao}}
 							</option>	
@@ -227,7 +227,7 @@
 					</div>
 					<div class="col-md-2">
 						<label for="name">Unidade de Medida</label>
-						<select class="form-select form-control" ng-mouseover="unidadeDeMedidas || carregarUnidadeDeMedidas()" ng-model="cadastro.unidadeDeMedida">
+						<select class="form-select form-control" id="cUnidadeDeMedida" ng-mouseover="unidadeDeMedidas || carregarUnidadeDeMedidas()" ng-model="cadastro.unidadeDeMedida">
 							<option ng-value="unidadeDeMedida.id" ng-repeat="unidadeDeMedida in unidadeDeMedidas">
 								{{unidadeDeMedida.descricao}}
 							</option>						
