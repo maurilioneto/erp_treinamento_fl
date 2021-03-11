@@ -1,6 +1,3 @@
 /build/
-/target/
 /.classpath
 /.settings
-/WebContent/plugins
-/WebContent/lib
