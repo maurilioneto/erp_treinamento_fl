@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1"
+    xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
+    http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="erpPU" transaction-type="RESOURCE_LOCAL">
+  	<class>br.com.erp.model.Categoria</class>
+  	<class>br.com.erp.model.Cor</class>
+  	<class>br.com.erp.model.Marca</class>
+  	<class>br.com.erp.model.Produto</class>
+  	<class>br.com.erp.model.Tamanho</class>
+  	<class>br.com.erp.model.UnidadeDeMedida</class>
+  
+    <properties>
+		<property name="hibernate.connection.provider" value="org.hibernate.connection.C3P0ConnectionProvider" />  
+        <property name="hibernate.c3p0.min_size" value="5" />  
+        <property name="hibernate.c3p0.max_size" value="100" />  
+        <property name="hibernate.c3p0.timeout" value="300" />  
+        <property name="hibernate.c3p0.max_statements" value="50" />  
+        <property name="hibernate.c3p0.idle_test_period" value="3000" />  
+        <property name="hibernate.enable_lazy_load_no_trans" value="true"/>
+ 			
+
+		 <!-- ORACLE -->
+		 
+		<!-- <property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@(DEION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=192.168.25.176)(PORT=1521)))(CONNECT_DATA=(SID=ORCL)))"/> 
+	    <property name="javax.persistence.jdbc.driver" value="oracle.jdbc.OracleDriver"/>
+	    <property name="javax.persistence.jdbc.user" value="VICT"/>
+	    <property name="javax.persistence.jdbc.password" value="VICT"/>
+	    <property name="hibernate.default_schema" value="VICT"/>
+	    <property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider"/>	
+	    <property name="hibernate.dialect" value="org.hibernate.dialect.OracleDialect" /> 	
+        <property name="hibernate.show_sql" value="false"/>
+        <property name="hibernate.hbm2ddl.auto" value="update" /> -->
+        
+        
+        <!-- POSTGRESQL -->
+	     <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
+		 <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:9876/mfc"/>
+		 <property name="javax.persistence.jdbc.user" value="postgres"/>
+		 <property name="javax.persistence.jdbc.password" value="admin"/>
+		 <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
+		 <property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider"/>		
+	     <property name="hibernate.show_sql" value="true"/>
+	     <property name="hibernate.format_sql" value="true"/>
+	     <property name="hibernate.hbm2ddl.auto" value="update" />
+	     
+	     <!-- MARIADB/MYSQL -->  	
+		<!-- <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
+		<property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/teste"/>
+		<property name="hibernate.connection.username" value="root"/>
+		<property name="hibernate.connection.password" value="kdk300!*"/>
+		<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+		<property name="hibernate.show_sql" value="true"/>
+		<property name="hibernate.format_sql" value="false"/>
+		<property name="hbm2ddl.auto" value="create"/> -->
+            
+    </properties>
+  </persistence-unit>
+</persistence>
